@@ -82,7 +82,7 @@ function initQuotesPage(){
 
         // Texte
         ctx.fillStyle = dark ? "#fff" : "#000";
-        ctx.font = "30px Poppins";
+        ctx.font = "70px Poppins";
         ctx.textAlign = "left";
         wrapText(ctx, quotes[currentIndex].text, 40, 180, 820, 32);
         ctx.fillText(quotes[currentIndex].author ? `—ANIMQUOTES, ${quotes[currentIndex].author}` : "", 40, 360);

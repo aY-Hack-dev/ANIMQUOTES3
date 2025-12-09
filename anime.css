@@ -152,7 +152,7 @@ body.dark .quote .author {
 .navigation button {
     padding: 14px 35px; /* boutons plus grands */
     font-size: 17px;
-    border-radius: 12px;
+    border-radius: 8.5px;
     border: none;
     cursor: pointer;
     background: #4b6cb7;

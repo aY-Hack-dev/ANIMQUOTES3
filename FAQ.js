@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 const result = await response.json();
                 if (result.success) {
-                    status.textContent = "Votre message a bien été envoyé.Vous recevrez une réponse dans un bref délai 😊;
+                    status.textContent = "Votre message a bien été envoyé.Vous recevrez une réponse dans un bref délai 😊";
                     status.style.backgroundColor = "rgba(79,70,229,0.15)";
                     status.style.color = "#4f46e5";
                     form.reset();

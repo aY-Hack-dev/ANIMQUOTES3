@@ -60,7 +60,7 @@ header {
 
 /* Bouton thème */
 #theme-toggle {
-    width: 50px;
+    width: 45px;
     height: 26px;
     background: #ddd;
     border-radius: 50px;
@@ -92,7 +92,7 @@ body.dark #theme-toggle .toggle-ball {
 /* Titre animé */
 #anime-title {
     font-family: "Montserrat", sans-serif;
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin: 0 20px;
     text-align: center;
 }

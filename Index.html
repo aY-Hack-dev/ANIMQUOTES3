@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANIMQUOTES</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PETIT MENU MODAL -->
+<div id="menu-modal" class="hidden">
+    <button id="close-menu">✕</button>
+    <h3>Menu</h3>
+    <ul>
+        <li><a href="menu/apropos.html">À propos</a></li>
+        <li><a href="menu/faq.html">FAQ</a></li>
+        <li><a href="top.html">Top Animés</a></li>
+        <li><a href="menu/mentions.html">Mentions légales</a></li>
+    </ul>
+</div>
+
+<!-- OVERLAY -->
+<div id="overlay" class="hidden"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo-title">
+            <img src="logo.png" alt="Animequotes Logo" class="logo">
+            <h1>ANIMQUOTES</h1>
+        </div>
+
+        <div class="header-controls">
+            <!-- BOUTON MENU -->
+            <button id="menu-btn" class="menu-btn">☰</button>
+
+            <input type="text" id="search" placeholder="Rechercher un animé...">
+
+            <button id="theme-toggle">
+                <span class="toggle-ball"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENEUR DES CARTES D'ANIMES -->
+    <main id="anime-cards">
+        <!-- Les cartes sont générées par JS -->
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>©2025 Par aY Hack (S.w Abimaël Yaméogo)</p>
+    </footer>
+
+    <!-- JS -->
+    <script src="script.js"></script>
+</body>
+</html>

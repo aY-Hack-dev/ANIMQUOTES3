@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ - ANIMQUOTES</title>
+<link rel="stylesheet" href="faq.css">
+</head>
+<body>
+
+<header>
+    <div class="logo-title">
+        <img src="logo.png" alt="AnimeQuotes Logo" class="logo">
+        <h1>FAQ</h1>
+    </div>
+</header>
+
+<main class="faq-container">
+
+    <p class="faq-intro">CLIQUEZ SUR UNE QUESTION POUR OBTENIR LA RÉPONSE.</p>
+
+    <div class="faq-item">
+        <h3>Comment rechercher une citation ?</h3>
+        <p>Utilisez la barre de recherche sur la page principale pour filtrer les animés en temps réel.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Puis-je proposer un nouvel animé ?</h3>
+        <p>Oui, rendez-vous sur le formulaire pour envoyer vos propositions. Chaque ajout est vérifié avant d’être publié.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Comment changer le thème du site ?</h3>
+        <p>Cliquez sur le bouton clair/sombre en haut à droite pour basculer instantanément. Votre préférence sera mémorisée lors de votre prochaine visite.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Que faire si une citation est incorrecte ou incomplète ?</h3>
+        <p>Contactez-nous via le formulaire ci-dessous. Nous corrigerons rapidement.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Le site est-il gratuit ?</h3>
+        <p>Oui, ANIMQUOTES est totalement gratuit et restera accessible à tous, sans publicité intrusive.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Puis-je télécharger une citation en image ?</h3>
+        <p>Oui, cliquez sur le bouton “Télécharger” sous chaque citation. Le nom de l’animé et un numéro unique seront automatiquement inclus pour éviter les doublons.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Comment fonctionne le classement des animés ?</h3>
+        <p>Les animés les plus consultés sont automatiquement listés dans la section “Top Animés”. Le suivi est anonyme et basé sur le nombre de visites.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Puis-je contribuer au projet ?</h3>
+        <p>Oui ! Les développeurs et fans peuvent proposer de nouvelles fonctionnalités ou contribuer à l’évolution du site.</p>
+    </div>
+
+    <!-- ------------------- CARTE CONTACT ------------------- -->
+    <section id="contact" class="contact-card">
+        <h3>Contact direct</h3>
+        <p>Pour toute question ou suggestion, utilisez le formulaire ci-dessous :</p>
+
+        <form id="faq-contact-form" class="contact-form">
+            <div class="form-group">
+                <label for="faq-name">Nom :</label>
+                <input type="text" id="faq-name" name="name" placeholder="Votre nom" required>
+            </div>
+
+            <div class="form-group">
+                <label for="faq-email">Email :</label>
+                <input type="email" id="faq-email" name="email" placeholder="Votre email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="faq-message">Message :</label>
+                <textarea id="faq-message" name="message" rows="5" placeholder="Votre message" required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Envoyer</button>
+        </form>
+
+        <div id="faq-form-status" class="form-status"></div>
+    </section>
+
+</main>
+
+<footer>
+    <p>©2025 Par aY Hack (S.W Abimaël Yaméogo)</p>
+</footer>
+
+<script src="faq.js"></script>
+</body>
+</html>

@@ -124,7 +124,7 @@ h1 {
     background: var(--card-bg);
     backdrop-filter: blur(10px);
     padding: 20px 25px;
-    border-radius: 12px;
+    border-radius: 10px;
     z-index: 1000;
     display: none;
 }
@@ -201,7 +201,7 @@ h1 {
 
 .card {
     position: relative;
-    border-radius: 14px;
+    border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
     background: var(--card-bg);
@@ -224,7 +224,7 @@ body:not(.dark-mode) .card:hover {
 
 .card h3 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 /* ------------ FOOTER ------------ */

@@ -75,7 +75,7 @@ main {
 #top-animes-list li {
     margin: 12px 0;
     padding: 15px 20px;
-    border-radius: 10px;
+    border-radius: 8px;
     background: rgba(255,255,255,0.7);
     cursor: pointer;
     transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
@@ -98,7 +98,7 @@ main {
     font-size: 1.1rem;
     background: rgba(79,70,229,0.15);
     padding: 5px 10px;
-    border-radius: 12px;
+    border-radius: 8px;
     margin-right: 15px;
     min-width: 35px;
     text-align: center;
@@ -110,7 +110,7 @@ main {
     color: #555;
     background: rgba(79,70,229,0.1);
     padding: 4px 8px;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 /* ------------ FOOTER ------------ */

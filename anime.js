@@ -74,7 +74,7 @@ function initQuotesPage(){
         const ctx = canvas.getContext('2d');
 
         canvas.width = 1000;
-        canvas.height = 450;
+        canvas.height = 500;
 
         const dark = document.body.classList.contains('dark');
 
@@ -96,14 +96,14 @@ function initQuotesPage(){
 ctx.fillStyle = dark ? "#fff" : "#000";
 
 // Taille max
-let fontSize = 70;
+let fontSize = 60;
 ctx.font = `${fontSize}px Poppins`;
 
 // Réduit automatiquement tant que ça dépasse le maxWidth
 const maxWidth = 820;
 
 while (ctx.measureText(quotes[currentIndex].text).width > maxWidth * 1.6) {
-    fontSize -= 5;
+    fontSize -= 20;
     ctx.font = `${fontSize}px Poppins`;
 }
 

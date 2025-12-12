@@ -67,84 +67,97 @@ function initQuotesPage(){
     // Télécharger citation en image
     document.querySelector('.download-btn').addEventListener('click', async () => {
 
-        // Charger la police avant de dessiner dans le canvas
-        await document.fonts.load("70px Poppins");
+    await document.fonts.load("70px Poppins");
 
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
 
-        canvas.width = 1000;
-        canvas.height = 500;
+    const dark = document.body.classList.contains('dark');
 
-        const dark = document.body.classList.contains('dark');
-
-        // ======= FOND EN DÉGRADÉ ========
-        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-
-        if (dark) {
-            gradient.addColorStop(0, "#0e0e0e");
-            gradient.addColorStop(1, "#1c1c1c");
-        } else {
-            gradient.addColorStop(0, "#ffffff");
-            gradient.addColorStop(1, "#e9e9e9");
-        }
-
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-// ======= TEXTE CITATION ========
-ctx.fillStyle = dark ? "#fff" : "#000";
-
-// Taille max
-let fontSize = 60;
-ctx.font = `${fontSize}px Poppins`;
-
-// Réduit automatiquement tant que ça dépasse le maxWidth
-const maxWidth = 820;
-
-while (ctx.measureText(quotes[currentIndex].text).width > maxWidth * 1.6) {
-    fontSize -= 20;
+    let fontSize = 60;
     ctx.font = `${fontSize}px Poppins`;
+
+    const maxWidth = 820;
+    const lineHeight = fontSize + 10;
+
+    // Estimation du nombre de lignes
+    const lines = getWrappedLines(ctx, quotes[currentIndex].text, maxWidth);
+    const textHeight = lines.length * lineHeight;
+
+    // Hauteur dynamique : espace + texte + auteur
+    canvas.width = 900;
+    canvas.height = textHeight + 250;
+
+    // Re-déclarer le ctx après resize
+    ctx.font = `${fontSize}px Poppins`;
+    ctx.fillStyle = dark ? "#fff" : "#000";
+    ctx.textAlign = "left";
+
+    // Dégradé
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    if (dark) {
+        gradient.addColorStop(0, "#0e0e0e");
+        gradient.addColorStop(1, "#1c1c1c");
+    } else {
+        gradient.addColorStop(0, "#ffffff");
+        gradient.addColorStop(1, "#e9e9e9");
+    }
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Texte
+    ctx.fillStyle = dark ? "#fff" : "#000";
+    wrapText(ctx, quotes[currentIndex].text, 40, 120, maxWidth, lineHeight);
+
+    // Auteur
+    ctx.font = "38px Poppins";
+    ctx.fillText(
+        quotes[currentIndex].author
+            ? `— ANIMQUOTES, ${quotes[currentIndex].author}`
+            : "",
+        40,
+        textHeight + 180
+    );
+
+    const link = document.createElement('a');
+    link.download = `${animeName}_citation_${currentIndex+1}_${Date.now()}.png`;
+    link.href = canvas.toDataURL();
+    link.click();
+});
+
+function getWrappedLines(ctx, text, maxWidth) {
+    const words = text.split(' ');
+    let line = '';
+    let lines = [];
+
+    for (let n = 0; n < words.length; n++) {
+        const test = line + words[n] + ' ';
+        if (ctx.measureText(test).width > maxWidth && n > 0) {
+            lines.push(line);
+            line = words[n] + ' ';
+        } else {
+            line = test;
+        }
+    }
+    lines.push(line);
+    return lines;
 }
 
-// Maintenant que la taille est ajustée, dessine proprement
-wrapText(ctx, quotes[currentIndex].text, 50, 150, maxWidth, fontSize + 10);
-
-// ======= TEXTE AUTEUR ========
-ctx.font = "38px Poppins";
-ctx.fillText(
-    quotes[currentIndex].author
-        ? `— ANIMQUOTES, ${quotes[currentIndex].author}`
-        : "",
-    40,
-    360
-);
-        // ======= TÉLÉCHARGEMENT ========
-        const link = document.createElement('a');
-        link.download = `${animeName}_citation_${currentIndex+1}_aY-Hack_${Date.now()}.png`;
-        link.href = canvas.toDataURL();
-        link.click();
-    });
-
-    // Fonction WRAP TEXT améliorée
-    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-        const words = text.split(' ');
-        let line = '';
-        for(let n = 0; n < words.length; n++) {
-            const testLine = line + words[n] + ' ';
-            const metrics = ctx.measureText(testLine);
-            const testWidth = metrics.width;
-            if(testWidth > maxWidth && n > 0){
-                ctx.fillText(line, x, y);
-                line = words[n] + ' ';
-                y += lineHeight;
-            } else {
-                line = testLine;
-            }
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+    const words = text.split(' ');
+    let line = '';
+    for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        if (ctx.measureText(testLine).width > maxWidth && n > 0) {
+            ctx.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+        } else {
+            line = testLine;
         }
-        ctx.fillText(line, x, y);
     }
-
+    ctx.fillText(line, x, y);
+}
     // Bouton Accueil
     const homeBtn = document.querySelector('.home-btn');
     if(homeBtn){

@@ -97,19 +97,19 @@ function initQuotesPage(){
 ctx.fillStyle = dark ? "#fff" : "#000";
 
 // Taille max
-let fontSize = 60;
+let fontSize = 70;
 ctx.font = `${fontSize}px Poppins`;
 
 // Réduit automatiquement tant que ça dépasse le maxWidth
 const maxWidth = 820;
 
 while (ctx.measureText(quotes[currentIndex].text).width > maxWidth * 1.6) {
-    fontSize -= 4;
+    fontSize -= 5;
     ctx.font = `${fontSize}px Poppins`;
 }
 
 // Maintenant que la taille est ajustée, dessine proprement
-wrapText(ctx, quotes[currentIndex].text, 40, 150, maxWidth, fontSize + 20);
+wrapText(ctx, quotes[currentIndex].text, 50, 150, maxWidth, fontSize + 10);
 
 // ======= TEXTE AUTEUR ========
 ctx.font = "38px Poppins";

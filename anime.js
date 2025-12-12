@@ -109,7 +109,7 @@ while (ctx.measureText(quotes[currentIndex].text).width > maxWidth * 1.6) {
 }
 
 // Maintenant que la taille est ajustée, dessine proprement
-wrapText(ctx, quotes[currentIndex].text, 40, 150, maxWidth, fontSize + 10);
+wrapText(ctx, quotes[currentIndex].text, 40, 150, maxWidth, fontSize + 20);
 
 // ======= TEXTE AUTEUR ========
 ctx.font = "38px Poppins";

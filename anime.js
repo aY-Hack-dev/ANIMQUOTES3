@@ -74,7 +74,7 @@ function initQuotesPage(){
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
 
-        canvas.width = 900;
+        canvas.width = 1000;
         canvas.height = 450;
 
         const dark = document.body.classList.contains('dark');

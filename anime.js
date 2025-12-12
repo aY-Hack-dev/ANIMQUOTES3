@@ -93,23 +93,33 @@ function initQuotesPage(){
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // ======= TEXTE CITATION ========
-        ctx.fillStyle = dark ? "#fff" : "#000";
-        ctx.font = "70px Poppins, sans-serif";
-        ctx.textAlign = "left";
+// ======= TEXTE CITATION ========
+ctx.fillStyle = dark ? "#fff" : "#000";
 
-        wrapText(ctx, quotes[currentIndex].text, 40, 150, 820, 60);
+// Taille max
+let fontSize = 60;
+ctx.font = `${fontSize}px Poppins`;
 
-        // ======= TEXTE AUTEUR ========
-        ctx.font = "40px Poppins, sans-serif";
-        ctx.fillText(
-            quotes[currentIndex].author
-                ? `— ANIMQUOTES, ${quotes[currentIndex].author}`
-                : "",
-            40,
-            360
-        );
+// Réduit automatiquement tant que ça dépasse le maxWidth
+const maxWidth = 820;
 
+while (ctx.measureText(quotes[currentIndex].text).width > maxWidth * 1.6) {
+    fontSize -= 4;
+    ctx.font = `${fontSize}px Poppins`;
+}
+
+// Maintenant que la taille est ajustée, dessine proprement
+wrapText(ctx, quotes[currentIndex].text, 40, 150, maxWidth, fontSize + 10);
+
+// ======= TEXTE AUTEUR ========
+ctx.font = "38px Poppins";
+ctx.fillText(
+    quotes[currentIndex].author
+        ? `— ANIMQUOTES, ${quotes[currentIndex].author}`
+        : "",
+    40,
+    360
+);
         // ======= TÉLÉCHARGEMENT ========
         const link = document.createElement('a');
         link.download = `${animeName}_citation_${currentIndex+1}_aY-Hack_${Date.now()}.png`;

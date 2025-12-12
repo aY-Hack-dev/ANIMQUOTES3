@@ -7,7 +7,6 @@ const themeToggle = document.getElementById('theme-toggle');
 
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark'); 
-    // Animation de la boule
     themeToggle.querySelector('.toggle-ball').classList.toggle('active');
 });
 
@@ -67,7 +66,11 @@ function initQuotesPage(){
     });
 
     // Télécharger citation en image
-    document.querySelector('.download-btn').addEventListener('click', () => {
+    document.querySelector('.download-btn').addEventListener('click', async () => {
+
+        // Charger la police avant de dessiner dans le canvas
+        await document.fonts.load("70px Poppins");
+
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
 
@@ -76,25 +79,45 @@ function initQuotesPage(){
 
         const dark = document.body.classList.contains('dark');
 
-        // Fond
-        ctx.fillStyle = dark ? "#0e0e0e" : "#ffffff";
-        ctx.fillRect(0,0,canvas.width,canvas.height);
+        // ======= FOND EN DÉGRADÉ ========
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
 
-        // Texte
+        if (dark) {
+            gradient.addColorStop(0, "#0e0e0e");
+            gradient.addColorStop(1, "#1c1c1c");
+        } else {
+            gradient.addColorStop(0, "#ffffff");
+            gradient.addColorStop(1, "#e9e9e9");
+        }
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // ======= TEXTE CITATION ========
         ctx.fillStyle = dark ? "#fff" : "#000";
-        ctx.font = "70px Poppins";
+        ctx.font = "70px Poppins, sans-serif";
         ctx.textAlign = "left";
-        wrapText(ctx, quotes[currentIndex].text, 40, 180, 820, 32);
-        ctx.fillText(quotes[currentIndex].author ? `—ANIMQUOTES, ${quotes[currentIndex].author}` : "", 40, 360);
 
-        // Télécharger
+        wrapText(ctx, quotes[currentIndex].text, 40, 150, 820, 60);
+
+        // ======= TEXTE AUTEUR ========
+        ctx.font = "40px Poppins, sans-serif";
+        ctx.fillText(
+            quotes[currentIndex].author
+                ? `— ANIMQUOTES, ${quotes[currentIndex].author}`
+                : "",
+            40,
+            360
+        );
+
+        // ======= TÉLÉCHARGEMENT ========
         const link = document.createElement('a');
-link.download = `${animeName}_citation_${currentIndex+1}_aY-Hack_${Date.now()}.png`;
+        link.download = `${animeName}_citation_${currentIndex+1}_aY-Hack_${Date.now()}.png`;
         link.href = canvas.toDataURL();
         link.click();
     });
 
-    // Fonction pour gérer les retours à la ligne
+    // Fonction WRAP TEXT améliorée
     function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
         const words = text.split(' ');
         let line = '';

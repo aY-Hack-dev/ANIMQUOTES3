@@ -62,7 +62,6 @@ function initQuotesPage(){
     // Copier citation
     document.querySelector('.copy-btn').addEventListener('click', () => {
         navigator.clipboard.writeText(`${quotes[currentIndex].text} ${quotes[currentIndex].author ? '— '+quotes[currentIndex].author : ''}`);
-        alert("Citation copiée");
     });
 
     // Télécharger citation en image

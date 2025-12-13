@@ -61,7 +61,29 @@
     <footer>
         <p>©2025 Par aY Hack (S.w Abimaël Yaméogo)</p>
     </footer>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA2LX6n8QCDgwNLRTGAWqwNvLUaUo6OyWg",
+    authDomain: "animquotes-176bd.firebaseapp.com",
+    projectId: "animquotes-176bd",
+    storageBucket: "animquotes-176bd.firebasestorage.app",
+    messagingSenderId: "423419230084",
+    appId: "1:423419230084:web:7b951ace9a2f51fb9dcfd1",
+    measurementId: "G-8BZ3Z6HJF9"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
     <!-- JS -->
     <script src="script.js"></script>
 </body>

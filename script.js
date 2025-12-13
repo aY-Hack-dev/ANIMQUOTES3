@@ -5,7 +5,6 @@ const particlesContainer = document.createElement('div');
 particlesContainer.classList.add('background-particles');
 document.body.appendChild(particlesContainer);
 
-// Générer 50 particules
 for(let i=0; i<100; i++){
     const p = document.createElement('span');
     p.textContent = Math.random() > 0.5 ? '*' : '`';
@@ -49,15 +48,27 @@ overlay.addEventListener('click', () => {
 });
 
 // =====================
-//     CHARGEMENT JSON
+//     FIRESTORE
 // =====================
-fetch('quotes.json')
-  .then(res => res.json())
-  .then(data => {
-      quotesData = data;
-      initSite();
-  })
-  .catch(err => console.error("Erreur chargement JSON:", err));
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+async function loadFirestoreQuotes() {
+    try {
+        const snapshot = await getDocs(collection(window.db, "quotes"));
+        const docs = snapshot.docs.map(doc => doc.data());
+
+        // Regrouper par anime
+        quotesData = {};
+        docs.forEach(q => {
+            if (!quotesData[q.anime]) quotesData[q.anime] = [];
+            quotesData[q.anime].push(q);
+        });
+
+        initSite();
+    } catch (e) {
+        console.error("Erreur Firestore", e);
+    }
+}
 
 // =====================
 //     INITIALISATION
@@ -193,20 +204,7 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
     ctx.fillText(line, x, y);
 }
 
-import {
-  collection,
-  getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-async function testFirestore() {
-  try {
-    const snapshot = await getDocs(collection(window.db, "quotes"));
-    snapshot.forEach(doc => {
-      console.log("Citation :", doc.data());
-    });
-  } catch (e) {
-    console.error("Erreur Firestore", e);
-  }
-}
-
-testFirestore();
+// =====================
+//   LANCER FIRESTORE
+// =====================
+loadFirestoreQuotes();

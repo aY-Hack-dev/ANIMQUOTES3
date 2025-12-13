@@ -3,19 +3,15 @@ import {
   addDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// Import du JSON
 import quotesData from "./quotes.json" assert { type: "json" };
 
 async function injectQuotes() {
-  const quotesRef = collection(window.db, "quotes");
-
-  let total = 0;
+  const ref = collection(window.db, "quotes");
+  let count = 0;
 
   for (const anime in quotesData) {
-    const quotesArray = quotesData[anime];
-
-    for (const quote of quotesArray) {
-      await addDoc(quotesRef, {
+    for (const quote of quotesData[anime]) {
+      await addDoc(ref, {
         text: quote.text,
         author: quote.author || "Inconnu",
         anime: anime,
@@ -24,12 +20,11 @@ async function injectQuotes() {
         likes: 0,
         createdAt: new Date()
       });
-
-      total++;
+      count++;
     }
   }
 
-  console.log(`✅ Injection terminée : ${total} citations ajoutées`);
+  console.log(`🔥 Injection terminée : ${count} citations`);
 }
 
 injectQuotes();

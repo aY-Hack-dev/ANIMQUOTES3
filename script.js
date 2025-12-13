@@ -5,6 +5,7 @@ const particlesContainer = document.createElement('div');
 particlesContainer.classList.add('background-particles');
 document.body.appendChild(particlesContainer);
 
+// Générer 100 particules
 for(let i=0; i<100; i++){
     const p = document.createElement('span');
     p.textContent = Math.random() > 0.5 ? '*' : '`';
@@ -48,27 +49,15 @@ overlay.addEventListener('click', () => {
 });
 
 // =====================
-//     FIRESTORE
+//     CHARGEMENT JSON
 // =====================
-import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-async function loadFirestoreQuotes() {
-    try {
-        const snapshot = await getDocs(collection(window.db, "quotes"));
-        const docs = snapshot.docs.map(doc => doc.data());
-
-        // Regrouper par anime
-        quotesData = {};
-        docs.forEach(q => {
-            if (!quotesData[q.anime]) quotesData[q.anime] = [];
-            quotesData[q.anime].push(q);
-        });
-
-        initSite();
-    } catch (e) {
-        console.error("Erreur Firestore", e);
-    }
-}
+fetch('quotes.json')
+  .then(res => res.json())
+  .then(data => {
+      quotesData = data;
+      initSite();
+  })
+  .catch(err => console.error("Erreur chargement JSON:", err));
 
 // =====================
 //     INITIALISATION
@@ -78,7 +67,11 @@ function initSite(){
     // ----------- CARTES ANIMES -----------
     const cardsContainer = document.getElementById('anime-cards');
     if(cardsContainer){
-        const list = Object.keys(quotesData);
+        let list = Object.keys(quotesData);
+
+        // Tri alphabétique
+        list.sort((a, b) => a.localeCompare(b, 'fr', {sensitivity: 'base'}));
+
         displayCards(list);
 
         const searchInput = document.getElementById('search');
@@ -87,6 +80,10 @@ function initSite(){
             const filtered = Object.keys(quotesData).filter(name =>
                 name.toLowerCase().includes(term)
             );
+
+            // Tri alphabétique du filtrage aussi
+            filtered.sort((a, b) => a.localeCompare(b, 'fr', {sensitivity: 'base'}));
+
             displayCards(filtered);
         });
     }
@@ -94,7 +91,6 @@ function initSite(){
     // ----------- PAGE CITATIONS -----------
     const quoteSection = document.getElementById('quote-section');
     if(quoteSection){
-
         const urlParams = new URLSearchParams(window.location.search);
         const animeName = urlParams.get('anime');
         document.getElementById('anime-title').textContent = animeName;
@@ -134,7 +130,6 @@ function initSite(){
 
         // Télécharger en image
         document.querySelector('.download-btn').addEventListener('click', () => {
-
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
 
@@ -203,8 +198,3 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
     }
     ctx.fillText(line, x, y);
 }
-
-// =====================
-//   LANCER FIRESTORE
-// =====================
-loadFirestoreQuotes();

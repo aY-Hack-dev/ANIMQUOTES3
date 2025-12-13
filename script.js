@@ -192,3 +192,20 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
     }
     ctx.fillText(line, x, y);
 }
+
+import { collection, getDocs } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+async function loadQuotes() {
+  const querySnapshot = await getDocs(collection(window.db, "quotes"));
+  const quotes = [];
+
+  querySnapshot.forEach(doc => {
+    quotes.push(doc.data());
+  });
+
+  console.log(quotes);
+  // ici tu injectes dans ton UI
+}
+
+loadQuotes();

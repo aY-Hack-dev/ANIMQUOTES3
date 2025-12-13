@@ -193,19 +193,20 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
     ctx.fillText(line, x, y);
 }
 
-import { collection, getDocs } 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-async function loadQuotes() {
-  const querySnapshot = await getDocs(collection(window.db, "quotes"));
-  const quotes = [];
-
-  querySnapshot.forEach(doc => {
-    quotes.push(doc.data());
-  });
-
-  console.log(quotes);
-  // ici tu injectes dans ton UI
+async function testFirestore() {
+  try {
+    const snapshot = await getDocs(collection(window.db, "quotes"));
+    snapshot.forEach(doc => {
+      console.log("Citation :", doc.data());
+    });
+  } catch (e) {
+    console.error("Erreur Firestore", e);
+  }
 }
 
-loadQuotes();
+testFirestore();

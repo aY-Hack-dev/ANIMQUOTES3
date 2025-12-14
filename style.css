@@ -108,7 +108,7 @@ h1 {
     cursor: pointer;
     font-size: 23px;
     transition: transform 0.2s;
-    border-radius: 6px;
+    border-radius: 2px;
     color: #ffffff;
 }
 

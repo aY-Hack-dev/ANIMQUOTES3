@@ -75,16 +75,11 @@
     <div class="loader"></div>
   </div>
 
-  <script>
-    if (localStorage.getItem("animquotesVisited")) {
-      window.location.href = "index.html";
-    }
-
-    setTimeout(() => {
-      localStorage.setItem("animquotesVisited", "true");
-      window.location.href = "index.html";
-    }, 3000);
-  </script>
+<script>
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 3000);
+</script>
 
 </body>
 </html>

@@ -249,7 +249,7 @@ footer {
 #theme-toggle {
     width: 35px;
     height: 35px;
-    border-radius: 30%;
+    border-radius: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -261,7 +261,7 @@ footer {
 #theme-toggle .toggle-ball {
     width: 16px;
     height: 16px;
-    border-radius: 10%;
+    border-radius: 20%;
     background: #fff;
     transition: transform 0.3s;
 }

@@ -76,22 +76,18 @@
   </div>
 
 <script>
-  setTimeout(() => {
-    window.location.href = "home.html";
-  }, 3000);
-// Si l'animation a déjà été vue, on skip
-if (sessionStorage.getItem("introPlayed")) {
-    window.location.href = "home.html";
-}
+  // Si l'intro a déjà été vue dans cette session, on skip immédiatement
+  if (sessionStorage.getItem("introPlayed")) {
+    window.location.replace("home.html");
+  } else {
+    // Marquer l'intro comme vue
+    sessionStorage.setItem("introPlayed", "true");
 
-// Marquer l'intro comme vue
-sessionStorage.setItem("introPlayed", "true");
-
-// Redirection après l'animation
-setTimeout(() => {
-    window.location.href = "home.html";
-}, 3000); // durée de l’animation
+    // Laisser jouer l'animation puis rediriger
+    setTimeout(() => {
+      window.location.replace("home.html");
+    }, 3000);
+  }
 </script>
-
 </body>
 </html>

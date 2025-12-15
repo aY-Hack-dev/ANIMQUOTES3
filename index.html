@@ -4,90 +4,19 @@
   <meta charset="UTF-8">
   <title>Bienvenue – Animquotes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    body {
-      height: 100vh;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      overflow: hidden;
-    }
-
-    .container {
-      text-align: center;
-      animation: fadeIn 1.2s ease forwards;
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      letter-spacing: 1px;
-      animation: slideDown 1s ease forwards;
-    }
-
-    p {
-      margin-top: 15px;
-      font-size: 1rem;
-      opacity: 0;
-      animation: fadeIn 1.2s ease forwards;
-      animation-delay: 1.2s;
-    }
-
-    .loader {
-      margin: 30px auto 0;
-      width: 50px;
-      height: 50px;
-      border: 3px solid rgba(255,255,255,0.2);
-      border-top: 3px solid #fff;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideDown {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div class="container">
     <h1>Bienvenue sur Animquotes</h1>
     <p>Des citations d’animés pour inspirer et avancer</p>
     <div class="loader"></div>
   </div>
 
-<script>
-  // Si l'intro a déjà été vue dans cette session, on skip immédiatement
-  if (sessionStorage.getItem("introPlayed")) {
-    window.location.replace("home.html");
-  } else {
-    // Marquer l'intro comme vue
-    sessionStorage.setItem("introPlayed", "true");
+  <footer>
+    <p>©2025 Par aY Hack (S.w Abimaël Yaméogo)</p>
+  </footer>
 
-    // Laisser jouer l'animation puis rediriger
-    setTimeout(() => {
-      window.location.replace("home.html");
-    }, 3000);
-  }
-</script>
+  <script src="script.js"></script>
 </body>
 </html>

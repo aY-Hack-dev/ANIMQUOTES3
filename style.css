@@ -11,7 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* titre un peu en haut */
+  justify-content: ; /* titre un peu en haut */
   overflow: hidden;
   color: #fff;
   background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #0f0c29);

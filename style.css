@@ -22,15 +22,39 @@ body {
 /* Container */
 .container {
   text-align: center;
-  animation: fadeIn 1.2s ease forwards;
+  position: relative;
+  animation: fadeIn 1s ease forwards;
+  z-index: 1;
+}
+
+/* Particules */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) translateX(0); opacity: 0.8; }
+  50% { opacity: 0.3; }
+  100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
 }
 
 /* Titre */
 h1 {
   font-size: 3rem;
   letter-spacing: 2px;
-  animation: pop 1s ease forwards;
-  text-shadow: 0 0 10px #fff, 0 0 20px #ff6, 0 0 30px #ff6;
+  animation: slideDown 1s ease forwards;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 15px #ff9,
+    0 0 25px #ff6,
+    0 0 40px #ff3,
+    0 0 60px #f06;
 }
 
 /* Sous-texte */
@@ -40,7 +64,6 @@ p {
   opacity: 0;
   animation: fadeInText 1.5s ease forwards;
   animation-delay: 1s;
-  text-shadow: 0 0 5px #fff;
 }
 
 /* Loader */
@@ -51,7 +74,7 @@ p {
   border: 4px solid rgba(255,255,255,0.2);
   border-top: 4px solid #fff;
   border-radius: 50%;
-  animation: spin 1s linear infinite, glow 1.5s ease-in-out infinite alternate;
+  animation: spin 1s linear infinite;
 }
 
 /* Footer */
@@ -80,19 +103,13 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pop {
-  0% { transform: scale(0); opacity: 0; }
-  80% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
-}
-
-@keyframes glow {
-  0% { box-shadow: 0 0 5px #fff; }
-  100% { box-shadow: 0 0 20px #ff6; }
 }
 
 body.fade-out {

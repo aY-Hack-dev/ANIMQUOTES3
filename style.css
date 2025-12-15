@@ -17,7 +17,7 @@ body {
   background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #0f0c29);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
-  padding-top: 60px; /* espace pour remonter le titre */
+  padding-top: 30px; /* espace pour remonter le titre */
   text-align: center;
 }
 

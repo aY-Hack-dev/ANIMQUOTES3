@@ -79,6 +79,18 @@
   setTimeout(() => {
     window.location.href = "home.html";
   }, 3000);
+// Si l'animation a déjà été vue, on skip
+if (sessionStorage.getItem("introPlayed")) {
+    window.location.href = "home.html";
+}
+
+// Marquer l'intro comme vue
+sessionStorage.setItem("introPlayed", "true");
+
+// Redirection après l'animation
+setTimeout(() => {
+    window.location.href = "home.html";
+}, 3000); // durée de l’animation
 </script>
 
 </body>

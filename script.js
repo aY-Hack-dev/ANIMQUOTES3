@@ -23,7 +23,17 @@ const themeToggle = document.getElementById('theme-toggle');
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     themeToggle.classList.toggle('active');
+
+    // Réactiver les animations même en mode sombre
+    updateParticlesAnimation();
 });
+
+function updateParticlesAnimation() {
+    const particles = document.querySelectorAll('.background-particles span');
+    particles.forEach(p => {
+        p.style.animationPlayState = 'running';
+    });
+}
 
 // =====================
 //     PETIT MENU MODAL

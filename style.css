@@ -11,13 +11,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: ; /* titre un peu en haut */
+  justify-content: center;
   overflow: hidden;
   color: #fff;
   background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #0f0c29);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
-  padding-top: 30px; /* espace pour remonter le titre */
+  padding: 10px;
   text-align: center;
 }
 
@@ -49,22 +49,20 @@ body {
 
 /* Titre */
 h1 {
-  font-size: 4rem; /* plus grand */
+  font-size: 2.5rem;
   letter-spacing: 1px;
   animation: slideDown 1s ease forwards;
-  margin-bottom: 20px;
-  font-weight: 700; /* police Poppins bold */
+  margin-bottom: 15px;
 }
 
 /* Citation */
 #quote {
-  font-size: 1.3rem; /* légèrement plus grand pour équilibre */
+  font-size: 1.1rem;
   font-style: italic;
   opacity: 0;
   animation: fadeInText 1.5s ease forwards;
   animation-delay: 0.5s;
   color: #fff;
-  text-align: center;
   margin-bottom: 30px;
 }
 
@@ -140,11 +138,11 @@ body.fade-out {
 /* Media queries pour responsive */
 @media (max-width: 768px) {
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   #quote {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .loader-container {
@@ -154,7 +152,7 @@ body.fade-out {
 
 @media (max-width: 480px) {
   h1 {
-    font-size: 2.2rem;
+    font-size: 1.6rem;
   }
 
   #quote {

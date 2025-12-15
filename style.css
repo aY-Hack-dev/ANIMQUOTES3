@@ -49,7 +49,7 @@ body {
 
 /* Titre */
 h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   letter-spacing: 1px;
   animation: slideDown 1s ease forwards;
   margin-bottom: 15px;

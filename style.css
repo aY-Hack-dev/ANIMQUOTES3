@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -47,14 +47,9 @@ body {
 /* Titre */
 h1 {
   font-size: 3rem;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   animation: slideDown 1s ease forwards;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 15px #ff9,
-    0 0 25px #ff6,
-    0 0 40px #ff3,
-    0 0 60px #f06;
+  /* Glow supprimé pour style épuré */
 }
 
 /* Sous-texte */

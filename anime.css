@@ -254,3 +254,27 @@ footer {
     transform: translate(-50%, -50%) scale(1);
   }
 }
+.success__icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.success__icon path {
+  fill: #4DA3FF; /* bleu principal */
+}
+
+.success__title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F4FD8; /* bleu foncé lisible */
+}
+
+.success__close {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.success__close path {
+  fill: #1F4FD8;
+}

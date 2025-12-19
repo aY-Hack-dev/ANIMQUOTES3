@@ -11,6 +11,28 @@ themeToggle.addEventListener('click', () => {
 });
 
 // =====================
+//     NOTIFICATION COPIE
+// =====================
+function showCopyAlert() {
+    const alert = document.getElementById("copy-success");
+    if (!alert) return;
+
+    alert.style.display = "flex";
+
+    clearTimeout(window.copyAlertTimeout);
+    window.copyAlertTimeout = setTimeout(() => {
+        hideCopyAlert();
+    }, 2500);
+}
+
+function hideCopyAlert() {
+    const alert = document.getElementById("copy-success");
+    if (!alert) return;
+
+    alert.style.display = "none";
+}
+
+// =====================
 //     CHARGEMENT JSON
 // =====================
 fetch('quotes.json')
@@ -48,7 +70,9 @@ function initQuotesPage(){
 
     showQuote(currentIndex);
 
-    // Navigation
+    // =====================
+    //     NAVIGATION
+    // =====================
     document.getElementById('next').addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % quotes.length;
         showQuote(currentIndex);
@@ -59,72 +83,91 @@ function initQuotesPage(){
         showQuote(currentIndex);
     });
 
-    // Copier citation
+    // =====================
+    //     COPIER CITATION
+    // =====================
     document.querySelector('.copy-btn').addEventListener('click', () => {
-        navigator.clipboard.writeText(`${quotes[currentIndex].text} ${quotes[currentIndex].author ? '— '+quotes[currentIndex].author : ''}`);
+        const content = `${quotes[currentIndex].text} ${quotes[currentIndex].author ? '— ' + quotes[currentIndex].author : ''}`;
+
+        navigator.clipboard.writeText(content)
+            .then(() => {
+                showCopyAlert();
+            })
+            .catch(err => {
+                console.error("Erreur lors de la copie :", err);
+            });
     });
 
-    // Télécharger citation en image
+    // =====================
+    //     TELECHARGER EN IMAGE
+    // =====================
     document.querySelector('.download-btn').addEventListener('click', async () => {
 
-    await document.fonts.load("70px Poppins");
+        await document.fonts.load("70px Poppins");
 
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
 
-    const dark = document.body.classList.contains('dark');
+        const dark = document.body.classList.contains('dark');
 
-    let fontSize = 60;
-    ctx.font = `${fontSize}px Poppins`;
+        let fontSize = 60;
+        ctx.font = `${fontSize}px Poppins`;
 
-    const maxWidth = 820;
-    const lineHeight = fontSize + 10;
+        const maxWidth = 820;
+        const lineHeight = fontSize + 10;
 
-    // Estimation du nombre de lignes
-    const lines = getWrappedLines(ctx, quotes[currentIndex].text, maxWidth);
-    const textHeight = lines.length * lineHeight;
+        const lines = getWrappedLines(ctx, quotes[currentIndex].text, maxWidth);
+        const textHeight = lines.length * lineHeight;
 
-    // Hauteur dynamique : espace + texte + auteur
-    canvas.width = 900;
-    canvas.height = textHeight + 250;
+        canvas.width = 900;
+        canvas.height = textHeight + 250;
 
-    // Re-déclarer le ctx après resize
-    ctx.font = `${fontSize}px Poppins`;
-    ctx.fillStyle = dark ? "#fff" : "#000";
-    ctx.textAlign = "left";
+        ctx.font = `${fontSize}px Poppins`;
+        ctx.textAlign = "left";
 
-    // Dégradé
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    if (dark) {
-        gradient.addColorStop(0, "#0e0e0e");
-        gradient.addColorStop(1, "#1c1c1c");
-    } else {
-        gradient.addColorStop(0, "#ffffff");
-        gradient.addColorStop(1, "#e9e9e9");
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        if (dark) {
+            gradient.addColorStop(0, "#0e0e0e");
+            gradient.addColorStop(1, "#1c1c1c");
+        } else {
+            gradient.addColorStop(0, "#ffffff");
+            gradient.addColorStop(1, "#e9e9e9");
+        }
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = dark ? "#fff" : "#000";
+        wrapText(ctx, quotes[currentIndex].text, 40, 120, maxWidth, lineHeight);
+
+        ctx.font = "38px Poppins";
+        ctx.fillText(
+            quotes[currentIndex].author
+                ? `— ANIMQUOTES, ${quotes[currentIndex].author}`
+                : "",
+            40,
+            textHeight + 180
+        );
+
+        const link = document.createElement('a');
+        link.download = `${animeName}_citation_${currentIndex + 1}_${Date.now()}.png`;
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+
+    // =====================
+    //     BOUTON ACCUEIL
+    // =====================
+    const homeBtn = document.querySelector('.home-btn');
+    if(homeBtn){
+        homeBtn.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
     }
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
 
-    // Texte
-    ctx.fillStyle = dark ? "#fff" : "#000";
-    wrapText(ctx, quotes[currentIndex].text, 40, 120, maxWidth, lineHeight);
-
-    // Auteur
-    ctx.font = "38px Poppins";
-    ctx.fillText(
-        quotes[currentIndex].author
-            ? `— ANIMQUOTES, ${quotes[currentIndex].author}`
-            : "",
-        40,
-        textHeight + 180
-    );
-
-    const link = document.createElement('a');
-    link.download = `${animeName}_citation_${currentIndex+1}_${Date.now()}.png`;
-    link.href = canvas.toDataURL();
-    link.click();
-});
-
+// =====================
+//     UTILS CANVAS
+// =====================
 function getWrappedLines(ctx, text, maxWidth) {
     const words = text.split(' ');
     let line = '';
@@ -157,12 +200,4 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
         }
     }
     ctx.fillText(line, x, y);
-}
-    // Bouton Accueil
-    const homeBtn = document.querySelector('.home-btn');
-    if(homeBtn){
-        homeBtn.addEventListener('click', () => {
-            window.location.href = 'index.html';
-        });
-    }
 }

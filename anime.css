@@ -269,20 +269,50 @@ footer {
   to   { transform: translateY(0); opacity: 1; }
 }
 
+.success {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+  width: 320px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: #EAF4FF; /* bleu clair */
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+
+  animation: fadeScale .25s ease;
+}
+
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -55%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
 .success__icon {
   width: 20px;
   height: 20px;
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
 .success__icon path {
-  fill: #84D65A;
+  fill: #4DA3FF; /* bleu principal */
 }
 
 .success__title {
   font-size: 14px;
   font-weight: 500;
-  color: #2B641E;
+  color: #1F4FD8; /* bleu foncé lisible */
 }
 
 .success__close {
@@ -291,5 +321,5 @@ footer {
 }
 
 .success__close path {
-  fill: #2B641E;
+  fill: #1F4FD8;
 }

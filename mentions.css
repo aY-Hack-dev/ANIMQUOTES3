@@ -156,10 +156,10 @@ footer {
 }
 
 /* ------------------- RESPONSIVE ------------------- */
-@media (max-width: 768px) {
+@media (max-width: 760px) {
     .logo {
-        width: 48px;
-        height: 48px;
+        width: 46px;
+        height: 46px;
     }
     h1 {
         font-size: 1.8rem;

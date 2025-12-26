@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!listEl) return;
 
     const stats = JSON.parse(localStorage.getItem('animeStats')) || {};
-
-    // Transforme en tableau et trie par popularité décroissante
     const sortedAnimes = Object.entries(stats).sort((a, b) => b[1] - a[1]);
 
     if (sortedAnimes.length === 0) {
@@ -12,36 +10,38 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    listEl.innerHTML = ''; // Vide la liste avant ajout
+    listEl.innerHTML = '';
 
     sortedAnimes.forEach(([name, views], index) => {
         const li = document.createElement('li');
-
-        // Rang
         const rank = document.createElement('span');
         rank.classList.add('top-rank');
         rank.textContent = index + 1;
 
-        // Nom animé
         const animeNameEl = document.createElement('span');
         animeNameEl.classList.add('anime-name');
         animeNameEl.textContent = name;
 
-        // Popularité
         const popularity = document.createElement('span');
         popularity.classList.add('popularity');
         popularity.textContent = `${views} vue(s)`;
 
-        // Assemblage
         li.appendChild(rank);
         li.appendChild(animeNameEl);
         li.appendChild(popularity);
 
-        // Redirection au clic
+        li.style.opacity = 0;
+        li.style.transform = 'translateY(15px)';
         li.addEventListener('click', () => {
             window.location.href = `anime.html?anime=${encodeURIComponent(name)}`;
         });
 
         listEl.appendChild(li);
+
+        setTimeout(() => {
+            li.style.transition = 'all 0.5s ease';
+            li.style.opacity = 1;
+            li.style.transform = 'translateY(0)';
+        }, index * 100);
     });
 });

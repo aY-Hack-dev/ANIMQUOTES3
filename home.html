@@ -1,67 +1,54 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<!-- Google tag (gtag.js) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ANIMQUOTES</title>
+<link rel="stylesheet" href="home.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3YEHLJCTM"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-E3YEHLJCTM');
+window.dataLayer=window.dataLayer||[]
+function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date())
+gtag('config','G-E3YEHLJCTM')
 </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANIMQUOTES</title>
-    <link rel="stylesheet" href="home.css">
-</head>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="890fc4b6-1bff-4466-b712-6a301510c841"></script>
+</head>
 <body>
 
-<!-- PETIT MENU MODAL -->
-<div id="menu-modal" class="hidden">
-    <button id="close-menu">✕</button>
-    <h3>Menu</h3>
-    <ul>
-        <li><a href="apropos.html">À propos</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="top.html">Top Animés</a></li>
-        <li><a href="mentions.html">Mentions légales</a></li>
-    </ul>
+<div class="background-particles"></div>
+
+<div id="menu-modal">
+<button id="close-menu">✕</button>
+<h3>Menu</h3>
+<ul>
+<li><a href="apropos.html">À propos</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="top.html">Top Animés</a></li>
+<li><a href="mentions.html">Mentions légales</a></li>
+</ul>
 </div>
 
-<!-- OVERLAY -->
-<div id="overlay" class="hidden"></div>
+<div id="overlay"></div>
 
-    <!-- HEADER -->
-    <header>
-        <div class="logo-title">
-            <img src="logo.png" alt="Animequotes Logo" class="logo">
-            <h1>ANIMQUOTES</h1>
-        </div>
+<header>
+<div class="logo-title">
+<img src="logo.png" alt="Animequotes Logo" class="logo">
+<h1>ANIMQUOTES</h1>
+</div>
+<div class="header-controls">
+<button id="menu-btn">☰</button>
+<input type="text" id="search" placeholder="Rechercher un animé...">
+<button id="theme-toggle"><span class="toggle-ball"></span></button>
+</div>
+</header>
 
-        <div class="header-controls">
-            <!-- BOUTON MENU -->
-            <button id="menu-btn" class="menu-btn">☰</button>
+<main id="anime-cards"></main>
 
-            <input type="text" id="search" placeholder="Rechercher un animé...">
+<footer>
+<p>©2025 ANIMQUOTES Par aY Hack</p>
+</footer>
 
-            <button id="theme-toggle">
-                <span class="toggle-ball"></span>
-            </button>
-        </div>
-    </header>
-
-    <!-- CONTENEUR DES CARTES D'ANIMES -->
-    <main id="anime-cards">
-        <!-- Les cartes sont générées par JS -->
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>©2025. ANIMQUOTES. Par aY Hack</p>
-    </footer>
-    <!-- JS -->
-    <script src="home.js"></script>
+<script src="home.js"></script>
 </body>
 </html>

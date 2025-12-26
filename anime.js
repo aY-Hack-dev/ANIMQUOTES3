@@ -1,8 +1,4 @@
 let quotesData = {}; 
-
-// =====================
-//     MODE SOMBRE / CLAIR
-// =====================
 const themeToggle = document.getElementById('theme-toggle');
 
 themeToggle.addEventListener('click', () => {
@@ -10,9 +6,6 @@ themeToggle.addEventListener('click', () => {
     themeToggle.querySelector('.toggle-ball').classList.toggle('active');
 });
 
-// =====================
-//     NOTIFICATION COPIE
-// =====================
 function showCopyAlert() {
     const alert = document.getElementById("copy-success");
     if (!alert) return;
@@ -32,9 +25,6 @@ function hideCopyAlert() {
     alert.style.display = "none";
 }
 
-// =====================
-//     CHARGEMENT JSON
-// =====================
 fetch('quotes.json')
   .then(res => res.json())
   .then(data => {
@@ -43,9 +33,6 @@ fetch('quotes.json')
   })
   .catch(err => console.error("Erreur chargement JSON:", err));
 
-// =====================
-//     INITIALISATION DE LA PAGE
-// =====================
 function initQuotesPage(){
     const quoteSection = document.getElementById('quote-section');
     if(!quoteSection) return;
@@ -69,10 +56,6 @@ function initQuotesPage(){
     }
 
     showQuote(currentIndex);
-
-    // =====================
-    //     NAVIGATION
-    // =====================
     document.getElementById('next').addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % quotes.length;
         showQuote(currentIndex);
@@ -82,10 +65,6 @@ function initQuotesPage(){
         currentIndex = (currentIndex - 1 + quotes.length) % quotes.length;
         showQuote(currentIndex);
     });
-
-    // =====================
-    //     COPIER CITATION
-    // =====================
     document.querySelector('.copy-btn').addEventListener('click', () => {
         const content = `${quotes[currentIndex].text} ${quotes[currentIndex].author ? '— ' + quotes[currentIndex].author : ''}`;
 
@@ -97,11 +76,7 @@ function initQuotesPage(){
                 console.error("Erreur lors de la copie :", err);
             });
     });
-
-    // =====================
-    //     TELECHARGER EN IMAGE
-    // =====================
-    document.querySelector('.download-btn').addEventListener('click', async () => {
+ document.querySelector('.download-btn').addEventListener('click', async () => {
 
         await document.fonts.load("70px Poppins");
 
@@ -154,9 +129,6 @@ function initQuotesPage(){
         link.click();
     });
 
-    // =====================
-    //     BOUTON ACCUEIL
-    // =====================
     const homeBtn = document.querySelector('.home-btn');
     if(homeBtn){
         homeBtn.addEventListener('click', () => {
@@ -165,9 +137,6 @@ function initQuotesPage(){
     }
 }
 
-// =====================
-//     UTILS CANVAS
-// =====================
 function getWrappedLines(ctx, text, maxWidth) {
     const words = text.split(' ');
     let line = '';

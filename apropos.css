@@ -1,7 +1,5 @@
-/* ------------ FONTS ------------ */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@700&display=swap');
 
-/* ------------ VARIABLES ------------ */
 :root {
     --gradient: linear-gradient(135deg, #a1c4fd, #c2e9fb);
     --text: #111;
@@ -19,7 +17,6 @@ body {
     flex-direction: column;
 }
 
-/* ------------ HEADER ------------ */
 header {
     padding: 25px;
     text-align: center;
@@ -43,7 +40,6 @@ h1 {
     margin: 0;
 }
 
-/* ------------ MAIN ------------ */
 main {
     flex: 1;
     display: flex;
@@ -87,7 +83,6 @@ main section ul li {
     margin-bottom: 8px;
 }
 
-/* ------------ FOOTER ------------ */
 footer {
     text-align: center;
     padding: 20px 0;
@@ -95,7 +90,6 @@ footer {
     opacity: 1;
 }
 
-/* ------------ RESPONSIVE ------------ */
 @media (max-width: 768px) {
     h1 {
         font-size: 2rem;

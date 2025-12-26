@@ -1,177 +1,25 @@
-/* ------------------- FONTS ------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-/* ------------------- GLOBAL ------------------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-    color: #111;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Mode sombre */
-body.dark {
-    background: linear-gradient(135deg, #0d0d0f, #1a1a2d);
-    color: #f4f4f4;
-}
-
-/* ------------------- HEADER ------------------- */
-header {
-    padding: 30px 0;
-    display: flex;
-    justify-content: center;
-}
-
-.logo-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.logo {
-    width: 55px;
-    height: 55px;
-}
-
-h1 {
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-/* ------------------- MAIN ------------------- */
-.mentions-container {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 0 25px 40px 25px;
-    flex: 1;
-}
-
-.mentions-container section {
-    background: rgba(255, 255, 255, 0.88);
-    padding: 22px 24px;
-    border-radius: 14px;
-    margin-bottom: 18px;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    transition: 0.25s ease;
-}
-
-body.dark .mentions-container section {
-    background: rgba(25, 25, 40, 0.9);
-    border: 1px solid rgba(70, 70, 100, 0.4);
-}
-
-.mentions-container section:hover {
-    transform: translateY(-3px);
-}
-
-h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 12px;
-}
-
-.mentions-container p {
-    line-height: 1.6;
-    font-weight: 300;
-}
-
-/* ------------------- FORMULAIRE ------------------- */
-form label {
-    font-weight: 500;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 12px 14px;
-    margin-top: 6px;
-    font-size: 15px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-family: 'Inter', sans-serif;
-    transition: 0.25s ease;
-}
-
-input:focus,
-textarea:focus {
-    border-color: #4f46e5;
-    outline: none;
-    box-shadow: 0 0 6px rgba(79, 70, 229, 0.35);
-}
-
-button {
-    margin-top: 10px;
-    background: #4f46e5;
-    color: #fff;
-    border: none;
-    padding: 12px 22px;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
-
-button:hover {
-    background: #3c38b8;
-    transform: translateY(-2px);
-}
-
-button:active {
-    transform: translateY(0px);
-}
-
-/* ------------------- FEEDBACK FORMULAIRE ------------------- */
-#form-status {
-    margin-top: 12px;
-    font-weight: 500;
-    padding: 10px 14px;
-    border-radius: 8px;
-    background-color: rgba(79, 70, 229, 0.15);
-    color: #4f46e5;
-    transition: 0.25s ease;
-}
-
-/* Mode sombre pour feedback */
-body.dark #form-status {
-    background-color: rgba(79, 70, 229, 0.3);
-    color: #d1d5db;
-}
-
-/* ------------------- FOOTER ------------------- */
-footer {
-    text-align: center;
-    padding: 22px 0;
-    opacity: 0.75;
-    font-size: 14px;
-    margin-top: auto;
-}
-
-/* ------------------- RESPONSIVE ------------------- */
-@media (max-width: 760px) {
-    .logo {
-        width: 46px;
-        height: 46px;
-    }
-    h1 {
-        font-size: 1.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo {
-        width: 42px;
-        height: 42px;
-    }
-    h1 {
-        font-size: 1.6rem;
-    }
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#a1c4fd,#c2e9fb);color:#111;min-height:100vh;display:flex;flex-direction:column}
+body.dark{background:linear-gradient(135deg,#0d0d0f,#1a1a2d);color:#f4f4f4}
+header{padding:30px 0;display:flex;justify-content:center}
+.logo-title{display:flex;align-items:center;gap:12px}
+.logo{width:55px;height:55px}
+h1{font-size:2rem;font-weight:700}
+.mentions-container{max-width:900px;margin:30px auto;padding:0 25px 40px;flex:1}
+.mentions-container section{background:rgba(255,255,255,.88);padding:22px 24px;border-radius:14px;margin-bottom:18px;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.4);transition:.25s ease}
+body.dark .mentions-container section{background:rgba(25,25,40,.9);border:1px solid rgba(70,70,100,.4)}
+.mentions-container section:hover{transform:translateY(-3px)}
+h2{font-size:1.25rem;font-weight:600;margin-bottom:12px}
+.mentions-container p{line-height:1.6;font-weight:300}
+form label{font-weight:500}
+input,textarea{width:100%;padding:12px 14px;margin-top:6px;font-size:15px;border-radius:10px;border:1px solid #ccc;font-family:'Inter',sans-serif;transition:.25s ease}
+input:focus,textarea:focus{border-color:#4f46e5;outline:none;box-shadow:0 0 6px rgba(79,70,229,.35)}
+button{margin-top:10px;background:#4f46e5;color:#fff;border:none;padding:12px 22px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:.25s ease}
+button:hover{background:#3c38b8;transform:translateY(-2px)}
+button:active{transform:translateY(0)}
+#form-status{margin-top:12px;font-weight:500;padding:10px 14px;border-radius:8px;background-color:rgba(79,70,229,.15);color:#4f46e5;transition:.25s ease}
+body.dark #form-status{background-color:rgba(79,70,229,.3);color:#d1d5db}
+footer{text-align:center;padding:22px 0;opacity:.75;font-size:14px;margin-top:auto}
+@media(max-width:760px){.logo{width:46px;height:46px}h1{font-size:1.8rem}}
+@media(max-width:480px){.logo{width:42px;height:42px}h1{font-size:1.6rem}}

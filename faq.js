@@ -14,11 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(form);
             const jsonData = Object.fromEntries(formData.entries());
             jsonData.access_key = "858454eb-a330-4859-91de-caa119aafc4e";
-
             status.textContent = "Envoi en cours...";
             status.style.backgroundColor = "rgba(79,70,229,0.1)";
             status.style.color = "#4f46e5";
-
             try {
                 const response = await fetch("https://api.web3forms.com/submit", {
                     method: "POST",

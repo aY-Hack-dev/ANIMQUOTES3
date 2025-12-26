@@ -1,276 +1,39 @@
-/* ------------ FONTS ------------ */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@700&display=swap');
-
-/* ------------ VARIABLES ------------ */
-:root {
-    --bg: #cce7ff;
-    --text: #111;
-    --card-bg: rgba(255,255,255,0.85);
-    --gradient: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-}
-
-.dark-mode {
-    --bg: #121212;
-    --text: #f4f4f4;
-    --card-bg: rgba(30,30,50,0.9);
-    --gradient: #121212;
-}
-
-/* ------------ GLOBAL ------------ */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: var(--gradient);
-    color: var(--text);
-    transition: 0.3s ease-in-out;
-    overflow-x: hidden;
-    position: relative;
-}
-
-/* ------------ BACKGROUND PARTICLES (MODE JOUR) ------------ */
-body:not(.dark-mode) .background-particles {
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    z-index:0;
-    overflow:hidden;
-}
-
-body:not(.dark-mode) .background-particles span {
-    position: absolute;
-    color: rgba(255,255,255,0.3);
-    font-size: 20px;
-    animation: float 20s linear infinite;
-}
-
-@keyframes float {
-    0% { transform: translateY(0) translateX(0) rotate(0deg);}
-    50% { transform: translateY(-100vh) translateX(50px) rotate(180deg);}
-    100% { transform: translateY(0) translateX(0) rotate(360deg);}
-}
-
-/* ------------ HEADER ------------ */
-header {
-    padding: 15px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* CENTRAGE LOGO + TITRE */
-    position: relative;
-    z-index: 10;
-}
-
-.logo-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    justify-content: center; /* CENTRAGE HORIZONTALE */
-    margin-bottom: 15px;
-}
-
-.logo {
-    width: 60px;
-    height: 60px;
-}
-
-h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 3rem; /* AGRANDI */
-    text-align: center;
-}
-
-/* ------------ HEADER CONTROLS ------------ */
-.header-controls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center; /* CENTRAGE CONTROLS */
-    margin-bottom: 10px;
-}
-
-#search {
-    padding: 10px 12px;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-    max-width: 300px;
-    flex: 1;
-}
-
-#menu-btn, #theme-toggle {
-    background: none;
-    border: 2px solid #ffffff;
-    cursor: pointer;
-    font-size: 23px;
-    transition: transform 0.2s;
-    border-radius: 5px;
-    color: #ffffff;
-}
-
-#menu-btn:hover, #theme-toggle:hover {
-    transform: scale(1.1);
-}
-
-/* ------------ MENU ------------ */
-#menu-modal {
-    position: fixed;
-    top: 100px;
-    left: 20px;
-    background: var(--card-bg);
-    backdrop-filter: blur(10px);
-    padding: 20px 25px;
-    border-radius: 10px;
-    z-index: 1000;
-    display: none;
-}
-
-#menu-modal.visible {
-    display: block;
-}
-
-#menu-modal h3 {
-    margin-top: 0;
-    font-size: 18px;
-    margin-bottom: 15px;
-    color: var(--text);
-}
-
-#menu-modal ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#menu-modal ul li {
-    margin: 10px 0;
-}
-
-#menu-modal ul li a {
-    text-decoration: none;
-    color: var(--text);
-    font-size: 16px;
-    transition: 0.2s;
-}
-
-#menu-modal ul li a:hover {
-    color: #4f46e5;
-}
-
-/* Bouton fermer à droite */
-#menu-modal #close-menu {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: var(--text);
-}
-
-/* Overlay */
-#overlay {
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.4);
-    display:none;
-    z-index:900;
-}
-
-#overlay.visible {
-    display:block;
-}
-
-/* ------------ CARTES ------------ */
-#anime-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-    gap: 20px;
-    padding: 20px;
-    position: relative;
-    z-index: 5;
-}
-
-.card {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    background: var(--card-bg);
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-body:not(.dark-mode) .card {
-    box-shadow: 0 0 15px rgba(255,255,255,0.2);
-}
-
-.card:hover {
-    transform: translateY(-5px) scale(1.03);
-}
-
-body:not(.dark-mode) .card:hover {
-    box-shadow: 0 0 25px rgba(79,70,229,0.7);
-}
-
-.card h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-}
-
-/* ------------ FOOTER ------------ */
-footer {
-    text-align: center;
-    padding: 25px 0;
-    opacity: 0.8;
-    font-size: 14px;
-    position: relative;
-    z-index: 5;
-}
-
-/* ------------ RESPONSIVE ------------ */
-@media(max-width: 600px){
-    h1 { font-size: 2.2rem; }
-    .logo { width: 50px; height: 50px; }
-    #search { max-width: 100%; margin: 10px 0; }
-    .header-controls { width: 100%; justify-content: center; }
-}
-
-/* ------------ BOUTON TOGGLE THEME ------------ */
-#theme-toggle {
-    width: 35px;
-    height: 35px;
-    border-radius: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border: 2px solid #fff;
-    background: none; /* conteneur simple */
-}
-
-#theme-toggle .toggle-ball {
-    width: 16px;
-    height: 16px;
-    border-radius: 20%;
-    background: #fff;
-    transition: transform 0.3s;
-}
-
-#theme-toggle.active .toggle-ball {
-    transform: translateX(18px);
-}
-
-/* Assurer visibilité sur mode nuit */
-.dark-mode #theme-toggle {
-    border-color: #f4f4f4;
-}
+:root{--bg:#cce7ff;--text:#111;--card-bg:rgba(255,255,255,.85);--gradient:linear-gradient(135deg,#a1c4fd,#c2e9fb)}
+.dark-mode{--bg:#121212;--text:#f4f4f4;--card-bg:rgba(30,30,50,.9);--gradient:#121212}
+body{margin:0;padding:0;font-family:'Poppins',sans-serif;background:var(--gradient);color:var(--text);transition:.3s ease-in-out;overflow-x:hidden;position:relative}
+.background-particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.background-particles span{position:absolute;font-size:20px;animation:float 20s linear infinite}
+body:not(.dark-mode) .background-particles span{color:rgba(255,255,255,.3)}
+.dark-mode .background-particles span{color:rgba(180,180,255,.15)}
+@keyframes float{0%{transform:translateY(0) translateX(0) rotate(0deg)}50%{transform:translateY(-100vh) translateX(50px) rotate(180deg)}100%{transform:translateY(0) translateX(0) rotate(360deg)}}
+header{padding:15px 20px;display:flex;flex-direction:column;align-items:center;position:relative;z-index:10}
+.logo-title{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:15px}
+.logo{width:60px;height:60px}
+h1{font-family:'Montserrat',sans-serif;font-weight:700;font-size:3rem;text-align:center}
+.header-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:10px}
+#search{padding:10px 12px;border-radius:8px;border:none;font-size:16px;max-width:300px;flex:1}
+#menu-btn,#theme-toggle{background:none;border:2px solid #fff;cursor:pointer;font-size:23px;transition:transform .2s;border-radius:5px;color:#fff}
+#menu-btn:hover,#theme-toggle:hover{transform:scale(1.1)}
+#menu-modal{position:fixed;top:100px;left:20px;background:var(--card-bg);backdrop-filter:blur(10px);padding:20px 25px;border-radius:10px;z-index:1000;display:none}
+#menu-modal.visible{display:block}
+#menu-modal h3{margin:0 0 15px;font-size:18px;color:var(--text)}
+#menu-modal ul{list-style:none;padding:0;margin:0}
+#menu-modal ul li{margin:10px 0}
+#menu-modal ul li a{text-decoration:none;color:var(--text);font-size:16px;transition:.2s}
+#menu-modal ul li a:hover{color:#4f46e5}
+#close-menu{position:absolute;top:8px;right:10px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text)}
+#overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);display:none;z-index:900}
+#overlay.visible{display:block}
+#anime-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;padding:20px;position:relative;z-index:5}
+.card{position:relative;border-radius:12px;overflow:hidden;cursor:pointer;background:var(--card-bg);padding:20px;text-align:center;transition:transform .3s ease,box-shadow .3s ease}
+body:not(.dark-mode) .card{box-shadow:0 0 15px rgba(255,255,255,.2)}
+.card:hover{transform:translateY(-5px) scale(1.03)}
+body:not(.dark-mode) .card:hover{box-shadow:0 0 25px rgba(79,70,229,.7)}
+.card h3{font-family:'Montserrat',sans-serif;font-weight:500}
+footer{text-align:center;padding:25px 0;opacity:.8;font-size:14px;position:relative;z-index:5}
+@media(max-width:600px){h1{font-size:2.2rem}.logo{width:50px;height:50px}#search{max-width:100%;margin:10px 0}.header-controls{width:100%;justify-content:center}}
+#theme-toggle{width:35px;height:35px;border-radius:10%;display:flex;justify-content:center;align-items:center;border:2px solid #fff;background:none}
+.toggle-ball{width:16px;height:16px;border-radius:20%;background:#fff;transition:transform .3s}
+#theme-toggle.active .toggle-ball{transform:translateX(18px)}
+.dark-mode #theme-toggle{border-color:#f4f4f4}

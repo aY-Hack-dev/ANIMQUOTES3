@@ -7,8 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formData = new FormData(form);
         const jsonData = Object.fromEntries(formData.entries());
-        jsonData.access_key = "858454eb-a330-4859-91de-caa119aafc4e"; // clé API Web3Forms
-
+        jsonData.access_key = "858454eb-a330-4859-91de-caa119aafc4e";
         try {
             const response = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",

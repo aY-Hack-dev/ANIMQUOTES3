@@ -18,21 +18,21 @@ const menuModal=document.getElementById('menu-modal')
 const menuClose=document.getElementById('menu-close')
 const overlay=document.getElementById('overlay')
 
-if(menuBtn&&menuModal&&overlay){
+if(menuBtn){
 menuBtn.addEventListener('click',()=>{
 menuModal.classList.add('visible')
 overlay.classList.add('visible')
 })
 }
 
-if(menuClose&&menuModal&&overlay){
+if(menuClose){
 menuClose.addEventListener('click',()=>{
 menuModal.classList.remove('visible')
 overlay.classList.remove('visible')
 })
 }
 
-if(overlay&&menuModal){
+if(overlay){
 overlay.addEventListener('click',()=>{
 menuModal.classList.remove('visible')
 overlay.classList.remove('visible')

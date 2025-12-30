@@ -161,10 +161,6 @@ cursor:pointer;
 transition:.2s
 }
 
-#menu-close:hover{
-background:rgba(255,255,255,.25)
-}
-
 #menu-modal ul{
 list-style:none;
 margin:0;
@@ -185,8 +181,6 @@ font-size:15px
 opacity:.7
 }
 
-/* OVERLAY */
-
 #overlay{
 position:fixed;
 inset:0;
@@ -199,8 +193,6 @@ z-index:900
 display:block
 }
 
-/* MOBILE */
-
 @media(max-width:767px){
 #menu-modal{
 left:16px;
@@ -209,8 +201,6 @@ top:70px;
 width:200px
 }
 }
-
-/* CARDS */
 
 #anime-cards{
 display:grid;

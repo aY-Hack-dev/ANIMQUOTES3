@@ -112,7 +112,7 @@ transform:translateX(14px)
 position:fixed;
 top:0;
 left:0;
-height:100svh;
+height:30svh;
 width:260px;
 background:var(--card-bg);
 backdrop-filter:blur(14px);

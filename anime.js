@@ -73,93 +73,87 @@ function initQuotesPage(){
             .catch(err => console.error("Erreur lors de la copie :", err));
     });
 
-    document.querySelector('.download-btn').addEventListener('click', async () => {
+document.querySelector('.download-btn').addEventListener('click', async () => {
 
-    await document.fonts.load("700 28px Montserrat");
-    await document.fonts.load("500 38px Poppins");
+    await document.fonts.load("700 34px Montserrat");
+    await document.fonts.load("500 52px Poppins");
 
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
 
     const isDark = document.body.classList.contains('dark');
 
-    const width = 1080;
-    const paddingTop = 60;
-    const paddingBottom = 60;
+    const width = 1200;
+    const maxTextWidth = 900;
+    const lineHeight = 64;
 
-    ctx.font = "500 38px Poppins";
-    const maxWidth = 820;
-    const lineHeight = 50;
+    ctx.font = "500 52px Poppins";
+    const quote = quotes[currentIndex].text;
+    const lines = getWrappedLines(ctx, quote, maxTextWidth);
+    const quoteBlockHeight = lines.length * lineHeight;
 
-    const quoteText = quotes[currentIndex].text;
-    const lines = getWrappedLines(ctx, quoteText, maxWidth);
-    const quoteHeight = lines.length * lineHeight;
+    const topBlockHeight = 120;
+    const bottomBlockHeight = 130;
 
-    const height =
-        paddingTop +
-        30 +
-        18 +
-        quoteHeight +
-        18 +
-        70 +
-        paddingBottom;
+    const height = topBlockHeight + quoteBlockHeight + bottomBlockHeight;
 
     canvas.width = width;
     canvas.height = height;
 
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    const gradient = ctx.createLinearGradient(0, 0, 0, height);
     if (isDark) {
-        gradient.addColorStop(0, "#121212");
-        gradient.addColorStop(1, "#0b0b0b");
+        gradient.addColorStop(0, "#111827");
+        gradient.addColorStop(1, "#020617");
     } else {
         gradient.addColorStop(0, "#ffffff");
-        gradient.addColorStop(1, "#f3f4f6");
+        gradient.addColorStop(1, "#eef2ff");
     }
 
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, width, height);
 
     ctx.textAlign = "center";
+    ctx.textBaseline = "top";
 
-    let y = paddingTop;
+    let y = 50;
 
-    ctx.fillStyle = isDark ? "#f4f4f4" : "#111";
-    ctx.font = "700 28px Montserrat";
+    ctx.font = "700 34px Montserrat";
+    ctx.fillStyle = isDark ? "#f8fafc" : "#0f172a";
     ctx.fillText("ANIMQUOTES", width / 2, y);
 
-    y += 14;
-    ctx.fillStyle = "#4b6cb7";
-    ctx.fillRect(width / 2 - 55, y, 110, 3);
+    y += 18;
+    ctx.fillStyle = "#6366f1";
+    ctx.fillRect(width / 2 - 70, y, 140, 4);
 
-    y += 32;
-    ctx.font = "500 38px Poppins";
-    ctx.fillStyle = isDark ? "#f4f4f4" : "#111";
+    y = (height - quoteBlockHeight) / 2;
+
+    ctx.font = "500 52px Poppins";
+    ctx.fillStyle = isDark ? "#f1f5f9" : "#020617";
 
     lines.forEach(line => {
         ctx.fillText(line, width / 2, y);
         y += lineHeight;
     });
 
-    y += 12;
-    ctx.fillStyle = isDark ? "#3f3f46" : "#d1d5db";
-    ctx.fillRect(width / 2 - 40, y, 80, 2);
+    y += 18;
+    ctx.fillStyle = isDark ? "#334155" : "#c7d2fe";
+    ctx.fillRect(width / 2 - 55, y, 110, 3);
 
-    y += 34;
-    ctx.font = "600 20px Poppins";
-    ctx.fillStyle = isDark ? "#d4d4d8" : "#333";
+    y += 28;
+    ctx.font = "600 26px Poppins";
+    ctx.fillStyle = isDark ? "#e5e7eb" : "#1e293b";
     ctx.fillText(quotes[currentIndex].author || "", width / 2, y);
 
-    y += 24;
-    ctx.font = "500 15px Poppins";
-    ctx.fillStyle = isDark ? "#a1a1aa" : "#666";
+    y += 32;
+    ctx.font = "500 20px Poppins";
+    ctx.fillStyle = isDark ? "#94a3b8" : "#475569";
     ctx.fillText(animeName.toUpperCase(), width / 2, y);
 
     const link = document.createElement('a');
-    link.download = `${animeName}_animquotes_${Date.now()}.png`;
+    link.download = `ANIMQUOTES_${Date.now()}.png`;
     link.href = canvas.toDataURL("image/png");
     link.click();
 });
-
     const homeBtn = document.querySelector('.home-btn');
     if(homeBtn){
         homeBtn.addEventListener('click', () => {

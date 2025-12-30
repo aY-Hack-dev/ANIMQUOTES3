@@ -1,0 +1,19 @@
+:root {
+  --bg: linear-gradient(135deg,#a1c4fd,#c2e9fb);
+  --text: #111;
+  --card-bg: rgba(255,255,255,0.85);
+  --gradient: linear-gradient(135deg,#a1c4fd,#c2e9fb);
+  --header-bg: transparent;
+  --button-bg: #4b6cb7;
+  --button-hover: #3a539b;
+}
+
+.dark-mode {
+  --bg: linear-gradient(135deg,#0d0f1a,#14172b);
+  --text: #e6e9f2;
+  --card-bg: rgba(25,28,50,0.92);
+  --gradient: linear-gradient(135deg,#0d0f1a,#14172b);
+  --header-bg: transparent;
+  --button-bg: #4b6cb7;
+  --button-hover: #3a539b;
+}

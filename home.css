@@ -111,10 +111,11 @@ transition:transform .3s
 transform:translateX(14px)
 }
 
+/* MENU */
+
 #menu-btn{
 position:relative;
-z-index:1001;
-cursor:pointer;
+z-index:1001
 }
 
 #menu-modal{
@@ -126,20 +127,20 @@ width:90%;
 max-width:300px;
 background:var(--card-bg);
 backdrop-filter:blur(12px);
-padding:18px 12px;
+padding:22px 14px;
 border-radius:12px;
 display:none;
 z-index:1000;
-text-align:center;
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-gap:12px;
+gap:14px;
+text-align:center
 }
 
 #menu-modal.visible{
-display:flex;
+display:flex
 }
 
 #menu-close{
@@ -152,17 +153,16 @@ display:flex;
 align-items:center;
 justify-content:center;
 border:none;
-background:rgba(255,255,255,0.1);
+background:rgba(255,255,255,.12);
 border-radius:6px;
 color:var(--text);
 font-size:18px;
 cursor:pointer;
-transition:.2s;
-z-index:1010;
+transition:.2s
 }
 
 #menu-close:hover{
-background:rgba(255,255,255,0.2);
+background:rgba(255,255,255,.25)
 }
 
 #menu-modal ul{
@@ -172,54 +172,24 @@ padding:0;
 display:flex;
 flex-direction:column;
 align-items:center;
-gap:10px;
+gap:10px
 }
 
 #menu-modal ul li a{
 text-decoration:none;
 color:var(--text);
-font-size:15px;
-display:block;
+font-size:15px
 }
 
 #menu-modal ul li a:hover{
-opacity:.7;
+opacity:.7
 }
+
+/* OVERLAY */
 
 #overlay{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.6);
-display:none;
-z-index:900;
-}
-
-#overlay.visible{
-display:block;
-}
-
-@media(max-width:767px){
-#menu-modal{
-left:16px;
-transform:none;
-top:70px;
-width:200px;
-align-items:flex-start; /* pour que les items restent centrés par rapport au popover */
-padding:18px 12px;
-}
-#menu-modal ul{
-align-items:center;
-}
-}
-#overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+inset:0;
 background:rgba(0,0,0,.6);
 display:none;
 z-index:900
@@ -228,6 +198,19 @@ z-index:900
 #overlay.visible{
 display:block
 }
+
+/* MOBILE */
+
+@media(max-width:767px){
+#menu-modal{
+left:16px;
+transform:none;
+top:70px;
+width:200px
+}
+}
+
+/* CARDS */
 
 #anime-cards{
 display:grid;

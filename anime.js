@@ -117,13 +117,16 @@ document.querySelector('.download-btn').addEventListener('click', async () => {
 
     let y = 50;
 
-    ctx.font = "700 34px Montserrat";
-    ctx.fillStyle = isDark ? "#f8fafc" : "#0f172a";
-    ctx.fillText("ANIMQUOTES", width / 2, y);
+ctx.font = "700 34px Montserrat";
+ctx.fillStyle = isDark ? "#f8fafc" : "#0f172a";
+ctx.fillText("ANIMQUOTES", width / 2, 50);
 
-    y += 18;
-    ctx.fillStyle = "#6366f1";
-    ctx.fillRect(width / 2 - 70, y, 140, 4);
+const titleMetrics = ctx.measureText("ANIMQUOTES");
+const titleHeight = titleMetrics.actualBoundingBoxAscent + titleMetrics.actualBoundingBoxDescent;
+
+y = 50 + titleHeight + 10; // 10px d'espace entre le texte et le trait
+ctx.fillStyle = "#6366f1";
+ctx.fillRect(width / 2 - 70, y, 140, 4);
 
     y = (height - quoteBlockHeight) / 2;
 

@@ -75,67 +75,86 @@ function initQuotesPage(){
 
     document.querySelector('.download-btn').addEventListener('click', async () => {
 
-        await document.fonts.load("700 32px Montserrat");
-        await document.fonts.load("500 44px Poppins");
+    await document.fonts.load("700 32px Montserrat");
+    await document.fonts.load("500 44px Poppins");
 
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
 
-        const isDark = document.body.classList.contains('dark');
+    const isDark = document.body.classList.contains('dark');
 
-        canvas.width = 1080;
-        canvas.height = 1080;
+    const width = 1080;
+    const paddingTop = 120;
+    const paddingBottom = 120;
 
-        ctx.fillStyle = isDark ? "#0f0f0f" : "#ffffff";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const titleHeight = 60;
+    const topLineHeight = 40;
+    const quoteTopMargin = 80;
+    const middleLineHeight = 60;
+    const bottomBlockHeight = 120;
 
-        ctx.textAlign = "center";
+    ctx.font = "500 44px Poppins";
+    const maxWidth = 820;
+    const lineHeight = 62;
 
-        ctx.fillStyle = isDark ? "#f4f4f4" : "#111";
-        ctx.font = "700 32px Montserrat";
-        ctx.fillText("ANIMQUOTES", canvas.width / 2, 140);
+    const quoteText = quotes[currentIndex].text;
+    const lines = getWrappedLines(ctx, quoteText, maxWidth);
+    const quoteHeight = lines.length * lineHeight;
 
-        ctx.fillStyle = "#4b6cb7";
-        ctx.fillRect(canvas.width / 2 - 70, 170, 140, 4);
+    const height =
+        paddingTop +
+        titleHeight +
+        topLineHeight +
+        quoteTopMargin +
+        quoteHeight +
+        middleLineHeight +
+        bottomBlockHeight +
+        paddingBottom;
 
-        const quoteText = quotes[currentIndex].text;
-        ctx.font = "500 44px Poppins";
-        ctx.fillStyle = isDark ? "#f4f4f4" : "#111";
+    canvas.width = width;
+    canvas.height = height;
 
-        const maxWidth = 820;
-        const lineHeight = 62;
-        let y = 320;
+    ctx.fillStyle = isDark ? "#0f0f0f" : "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        const lines = getWrappedLines(ctx, quoteText, maxWidth);
-        lines.forEach(line => {
-            ctx.fillText(line, canvas.width / 2, y);
-            y += lineHeight;
-        });
+    ctx.textAlign = "center";
 
-        ctx.fillStyle = isDark ? "#444" : "#d1d5db";
-        ctx.fillRect(canvas.width / 2 - 50, y + 40, 100, 3);
+    let y = paddingTop;
 
-        ctx.font = "600 22px Poppins";
-        ctx.fillStyle = isDark ? "#cccccc" : "#333";
-        ctx.fillText(
-            quotes[currentIndex].author || "",
-            canvas.width / 2,
-            y + 100
-        );
+    ctx.fillStyle = isDark ? "#f4f4f4" : "#111";
+    ctx.font = "700 32px Montserrat";
+    ctx.fillText("ANIMQUOTES", width / 2, y);
+    y += 30;
 
-        ctx.font = "500 18px Poppins";
-        ctx.fillStyle = isDark ? "#9ca3af" : "#666";
-        ctx.fillText(
-            animeName.toUpperCase(),
-            canvas.width / 2,
-            y + 135
-        );
+    ctx.fillStyle = "#4b6cb7";
+    ctx.fillRect(width / 2 - 70, y + 20, 140, 4);
+    y += topLineHeight + quoteTopMargin;
 
-        const link = document.createElement('a');
-        link.download = `${animeName}_animquotes_${Date.now()}.png`;
-        link.href = canvas.toDataURL("image/png");
-        link.click();
+    ctx.font = "500 44px Poppins";
+    ctx.fillStyle = isDark ? "#f4f4f4" : "#111";
+
+    lines.forEach(line => {
+        ctx.fillText(line, width / 2, y);
+        y += lineHeight;
     });
+
+    ctx.fillStyle = isDark ? "#444" : "#d1d5db";
+    ctx.fillRect(width / 2 - 50, y + 30, 100, 3);
+    y += 80;
+
+    ctx.font = "600 22px Poppins";
+    ctx.fillStyle = isDark ? "#cccccc" : "#333";
+    ctx.fillText(quotes[currentIndex].author || "", width / 2, y);
+
+    ctx.font = "500 18px Poppins";
+    ctx.fillStyle = isDark ? "#9ca3af" : "#666";
+    ctx.fillText(animeName.toUpperCase(), width / 2, y + 30);
+
+    const link = document.createElement('a');
+    link.download = `${animeName}_animquotes_${Date.now()}.png`;
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+});
 
     const homeBtn = document.querySelector('.home-btn');
     if(homeBtn){

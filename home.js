@@ -2,28 +2,6 @@ let quotesData={}
 const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches
 if(prefersDark)document.body.classList.add('dark-mode')
 
-const particlesContainer=document.createElement('div')
-particlesContainer.classList.add('background-particles')
-document.body.appendChild(particlesContainer)
-
-for(let i=0;i<100;i++){
-const p=document.createElement('span')
-p.textContent=Math.random()>.5?'*':'`'
-p.style.left=Math.random()*100+'vw'
-p.style.top=Math.random()*100+'vh'
-p.style.fontSize=10+Math.random()*20+'px'
-particlesContainer.appendChild(p)
-}
-
-function updateParticlesAnimation(){
-const dark=document.body.classList.contains('dark-mode')
-document.querySelectorAll('.background-particles span').forEach(p=>{
-p.style.animationPlayState='running'
-p.style.animationDuration=(dark?25+Math.random()*20:15+Math.random()*15)+'s'
-})
-}
-updateParticlesAnimation()
-
 const themeToggle=document.getElementById('theme-toggle')
 if(themeToggle){
 themeToggle.classList.toggle('active',document.body.classList.contains('dark-mode'))

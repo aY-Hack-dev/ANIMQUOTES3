@@ -109,22 +109,22 @@ transform:translateX(14px)
 }
 
 #menu-modal{
-position:fixed;
-top:30;
-left:0;
-height:30svh;
-width:260px;
+position:absolute;
+top:100%;
+right:0;
+margin-top:10px;
+width:180px;
 background:var(--card-bg);
 backdrop-filter:blur(14px);
-padding:20px;
-border-radius:0 16px 16px 0;
-transform:translateX(-100%);
-transition:.3s ease;
+border-radius:12px;
+padding:12px;
+box-shadow:0 12px 30px rgba(0,0,0,.35);
+display:none;
 z-index:1000
 }
 
 #menu-modal.visible{
-transform:translateX(0)
+display:block
 }
 
 #menu-modal ul{
@@ -132,13 +132,18 @@ list-style:none
 }
 
 #menu-modal ul li{
-margin:14px 0
+padding:8px 6px
 }
 
 #menu-modal ul li a{
 text-decoration:none;
 color:var(--text);
-font-size:15px
+font-size:14px;
+display:block
+}
+
+#menu-modal ul li a:hover{
+opacity:.7
 }
 
 #overlay{

@@ -15,29 +15,23 @@ if(typeof updateParticlesAnimation==='function')updateParticlesAnimation()
 
 const menuBtn=document.getElementById('menu-btn')
 const menuModal=document.getElementById('menu-modal')
-const menuClose=document.getElementById('menu-close')
+const closeMenu=document.getElementById('close-menu')
 const overlay=document.getElementById('overlay')
 
-if(menuBtn){
 menuBtn.addEventListener('click',()=>{
 menuModal.classList.add('visible')
 overlay.classList.add('visible')
 })
-}
 
-if(menuClose){
-menuClose.addEventListener('click',()=>{
+closeMenu.addEventListener('click',()=>{
 menuModal.classList.remove('visible')
 overlay.classList.remove('visible')
 })
-}
 
-if(overlay){
 overlay.addEventListener('click',()=>{
 menuModal.classList.remove('visible')
 overlay.classList.remove('visible')
 })
-}
 
 fetch('quotes.json').then(r=>r.json()).then(d=>{
 quotesData=d

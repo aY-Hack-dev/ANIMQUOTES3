@@ -61,7 +61,7 @@ main {
 
 main section {
     max-width: 900px;
-    width: 100%;
+    width: 95%;
     background: var(--card-bg);
     border-radius: 14px;
     padding: clamp(16px, 5vw, 30px);

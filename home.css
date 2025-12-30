@@ -107,10 +107,9 @@ transition:transform .3s
 #theme-toggle.active .toggle-ball{
 transform:translateX(14px)
 }
-
 #menu-modal{
 position:absolute;
-top:100%;
+top:50px; /* juste sous le header */
 background:var(--card-bg);
 backdrop-filter:blur(14px);
 border-radius:12px;
@@ -120,23 +119,20 @@ box-shadow:0 12px 30px rgba(0,0,0,.35);
 display:none;
 transition:.2s ease;
 }
-
-#menu-modal.visible{
-display:block;
-}
-
 @media(max-width:767px){
 #menu-modal{
-left:0;
-transform:none;
+left:16px;
 }
 }
-
 @media(min-width:768px){
 #menu-modal{
 left:50%;
 transform:translateX(-50%);
 }
+}
+
+#menu-modal.visible{
+display:block;
 }
 
 #menu-modal ul{

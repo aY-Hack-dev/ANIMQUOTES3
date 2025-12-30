@@ -24,7 +24,7 @@ body.dark {
 }
 
 header {
-    padding: 20px;
+    padding: clamp(12px, 3vw, 20px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,19 +33,20 @@ header {
 .header-center {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: clamp(10px, 3vw, 20px);
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .home-btn {
-    padding: 10px 18px;
+    padding: clamp(6px, 2vw, 10px) clamp(12px, 4vw, 18px);
     background: #4b6cb7;
     color: #fff;
     border-radius: 25px;
     text-decoration: none;
     font-weight: 600;
     transition: 0.3s;
-    font-size: 16px;
+    font-size: clamp(14px, 3.5vw, 16px);
 }
 
 .home-btn:hover {
@@ -53,19 +54,20 @@ header {
 }
 
 #theme-toggle {
-    width: 50px;
-    height: 26px;
+    width: 44px;
+    height: 24px;
     background: #ddd;
     border-radius: 50px;
     border: none;
     position: relative;
     cursor: pointer;
     transition: 0.4s;
+    flex-shrink: 0;
 }
 
 #theme-toggle .toggle-ball {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     background: #fff;
     border-radius: 50%;
     position: absolute;
@@ -79,22 +81,22 @@ body.dark #theme-toggle {
 }
 
 body.dark #theme-toggle .toggle-ball {
-    transform: translateX(24px);
+    transform: translateX(20px);
 }
 
 #anime-title {
     font-family: "Montserrat", sans-serif;
-    font-size: 2rem;
-    margin: 0 20px;
+    font-size: clamp(1.6rem, 5vw, 2rem);
+    margin: 0 12px;
     text-align: center;
 }
 
 main#quote-section {
     flex: 1;
     max-width: 900px;
-    margin: 40px auto;
+    margin: clamp(20px, 6vw, 40px) auto;
     text-align: center;
-    padding: 0 20px;
+    padding: 0 clamp(14px, 4vw, 20px);
 
     display: flex;
     flex-direction: column;
@@ -103,12 +105,12 @@ main#quote-section {
 
 .quote {
     background: var(--card-bg);
-    padding: 30px;
+    padding: clamp(18px, 5vw, 30px);
     border-radius: 15px;
     margin-bottom: 20px;
     transition: 0.3s;
     text-align: center;
-    min-height: 180px;
+    min-height: clamp(140px, 35vw, 180px);
     font-weight: 800;
 }
 
@@ -117,12 +119,12 @@ body.dark .quote {
 }
 
 .quote .text {
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: clamp(16px, 4.5vw, 20px);
+    margin-bottom: 12px;
 }
 
 .quote .author {
-    font-size: 20px;
+    font-size: clamp(15px, 4vw, 20px);
     color: #555;
 }
 
@@ -133,14 +135,14 @@ body.dark .quote .author {
 .navigation {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: clamp(12px, 4vw, 25px);
     margin-bottom: 15px;
     flex-wrap: wrap;
 }
 
 .navigation button {
-    padding: 14px 35px;
-    font-size: 17px;
+    padding: clamp(10px, 3vw, 14px) clamp(22px, 6vw, 35px);
+    font-size: clamp(14px, 4vw, 17px);
     border-radius: 12px;
     border: none;
     cursor: pointer;
@@ -157,13 +159,13 @@ body.dark .quote .author {
 .actions {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: clamp(10px, 4vw, 15px);
     flex-wrap: wrap;
 }
 
 .actions button {
-    padding: 10px 20px;
-    font-size: 15px;
+    padding: clamp(8px, 3vw, 10px) clamp(14px, 5vw, 20px);
+    font-size: clamp(13px, 3.5vw, 15px);
     border-radius: 12px;
     background: #4b6cb7;
     color: #fff;
@@ -177,78 +179,49 @@ body.dark .quote .author {
 
 footer {
     text-align: center;
-    padding: 20px 0;
-    font-size: 14px;
+    padding: clamp(16px, 4vw, 20px) 0;
+    font-size: clamp(12px, 3.5vw, 14px);
     opacity: 0.7;
 }
 
-@media (max-width: 768px) {
-    #anime-title {
-        font-size: 2rem;
-    }
-
-    .quote .text {
-        font-size: 18px;
-    }
-
-    .quote .author {
-        font-size: 16px;
-    }
-
-    .navigation button {
-        padding: 12px 30px;
-        font-size: 15px;
-    }
-
-    .actions button {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
-
-    .home-btn {
-        padding: 8px 14px;
-        font-size: 15px;
-    }
-}
-
 .success {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
-  width: 320px;
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  background: #EDFBD8;
-  border-radius: 8px;
-  box-shadow: 0 0 5px -3px #111;
-  animation: slideIn .3s ease;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+    width: min(320px, 90vw);
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    background: #EDFBD8;
+    border-radius: 8px;
+    box-shadow: 0 0 5px -3px #111;
+    animation: slideIn .3s ease;
 }
 
 @keyframes slideIn {
-  from { transform: translateY(20px); opacity: 0; }
-  to   { transform: translateY(0); opacity: 1; }
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .success__icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
 }
 
 .success__icon path {
-  fill: #84D65A;
+    fill: #84D65A;
 }
 
 .success__title {
-  font-size: 14px;
-  font-weight: 500;
-  color: #2B641E;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2B641E;
 }
 
 .success__close {
-  margin-left: auto;
-  cursor: pointer;
+    margin-left: auto;
+    cursor: pointer;
 }
 
 .success__close path {
-  fill: #2B641E;
+    fill: #2B641E;
 }

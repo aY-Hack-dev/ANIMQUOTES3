@@ -6,6 +6,7 @@
   --header-bg: transparent;
   --button-bg: #4b6cb7;
   --button-hover: #3a539b;
+  --logo-radius: 14px;
 }
 
 .dark-mode {
@@ -16,4 +17,30 @@
   --header-bg: transparent;
   --button-bg: #4b6cb7;
   --button-hover: #3a539b;
+  --logo-radius: 14px;
+}
+
+body {
+  background: var(--gradient);
+  color: var(--text);
+  transition: 0.3s;
+}
+
+.logo {
+  border-radius: var(--logo-radius);
+}
+
+.card {
+  background: var(--card-bg);
+  transition: 0.3s;
+}
+
+button {
+  background: var(--button-bg);
+  color: #fff;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: var(--button-hover);
 }

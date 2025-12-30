@@ -76,97 +76,72 @@ function initQuotesPage(){
                 console.error("Erreur lors de la copie :", err);
             });
     });
- document.querySelector('.download-btn').addEventListener('click', async () => {
+document.querySelector('.download-btn').addEventListener('click', async () => {
 
-        await document.fonts.load("70px Poppins");
+    await document.fonts.load("700 32px Montserrat");
+    await document.fonts.load("500 44px Poppins");
 
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
 
-        const dark = document.body.classList.contains('dark');
+    const isDark = document.body.classList.contains('dark');
 
-        let fontSize = 60;
-        ctx.font = `${fontSize}px Poppins`;
+    canvas.width = 1080;
+    canvas.height = 1080;
 
-        const maxWidth = 820;
-        const lineHeight = fontSize + 10;
+    ctx.fillStyle = isDark ? "#0f0f0f" : "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        const lines = getWrappedLines(ctx, quotes[currentIndex].text, maxWidth);
-        const textHeight = lines.length * lineHeight;
+    ctx.textAlign = "center";
 
-        canvas.width = 900;
-        canvas.height = textHeight + 250;
+    // ANIMQUOTES (TOP)
+    ctx.fillStyle = isDark ? "#f4f4f4" : "#111";
+    ctx.font = "700 32px Montserrat";
+    ctx.fillText("ANIMQUOTES", canvas.width / 2, 140);
 
-        ctx.font = `${fontSize}px Poppins`;
-        ctx.textAlign = "left";
+    // TOP LINE
+    ctx.fillStyle = "#4b6cb7";
+    ctx.fillRect(canvas.width / 2 - 70, 170, 140, 4);
 
-        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-        if (dark) {
-            gradient.addColorStop(0, "#0e0e0e");
-            gradient.addColorStop(1, "#1c1c1c");
-        } else {
-            gradient.addColorStop(0, "#ffffff");
-            gradient.addColorStop(1, "#e9e9e9");
-        }
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // QUOTE
+    const quoteText = quotes[currentIndex].text;
+    ctx.font = "500 44px Poppins";
+    ctx.fillStyle = isDark ? "#f4f4f4" : "#111";
 
-        ctx.fillStyle = dark ? "#fff" : "#000";
-        wrapText(ctx, quotes[currentIndex].text, 40, 120, maxWidth, lineHeight);
+    const maxWidth = 820;
+    const lineHeight = 62;
+    let y = 320;
 
-        ctx.font = "38px Poppins";
-        ctx.fillText(
-            quotes[currentIndex].author
-                ? `— ANIMQUOTES, ${quotes[currentIndex].author}`
-                : "",
-            40,
-            textHeight + 180
-        );
-
-        const link = document.createElement('a');
-        link.download = `${animeName}_citation_${currentIndex + 1}_${Date.now()}.png`;
-        link.href = canvas.toDataURL();
-        link.click();
+    const lines = getWrappedLines(ctx, quoteText, maxWidth);
+    lines.forEach(line => {
+        ctx.fillText(line, canvas.width / 2, y);
+        y += lineHeight;
     });
 
-    const homeBtn = document.querySelector('.home-btn');
-    if(homeBtn){
-        homeBtn.addEventListener('click', () => {
-            window.location.href = 'home.html';
-        });
-    }
-}
+    // MIDDLE LINE
+    ctx.fillStyle = isDark ? "#444" : "#d1d5db";
+    ctx.fillRect(canvas.width / 2 - 50, y + 40, 100, 3);
 
-function getWrappedLines(ctx, text, maxWidth) {
-    const words = text.split(' ');
-    let line = '';
-    let lines = [];
+    // AUTHOR
+    ctx.font = "600 22px Poppins";
+    ctx.fillStyle = isDark ? "#cccccc" : "#333";
+    ctx.fillText(
+        quotes[currentIndex].author || "",
+        canvas.width / 2,
+        y + 100
+    );
 
-    for (let n = 0; n < words.length; n++) {
-        const test = line + words[n] + ' ';
-        if (ctx.measureText(test).width > maxWidth && n > 0) {
-            lines.push(line);
-            line = words[n] + ' ';
-        } else {
-            line = test;
-        }
-    }
-    lines.push(line);
-    return lines;
-}
+    // ANIME
+    ctx.font = "500 18px Poppins";
+    ctx.fillStyle = isDark ? "#9ca3af" : "#666";
+    ctx.fillText(
+        animeName.toUpperCase(),
+        canvas.width / 2,
+        y + 135
+    );
 
-function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-    const words = text.split(' ');
-    let line = '';
-    for (let n = 0; n < words.length; n++) {
-        const testLine = line + words[n] + ' ';
-        if (ctx.measureText(testLine).width > maxWidth && n > 0) {
-            ctx.fillText(line, x, y);
-            line = words[n] + ' ';
-            y += lineHeight;
-        } else {
-            line = testLine;
-        }
-    }
-    ctx.fillText(line, x, y);
-}
+    const link = document.createElement('a');
+    link.download = `${animeName}_animquotes_${Date.now()}.png`;
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+});

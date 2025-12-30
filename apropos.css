@@ -60,8 +60,8 @@ main {
 }
 
 main section {
+    width: 85%;
     max-width: 900px;
-    width: 80%;
     background: var(--card-bg);
     border-radius: 12px;
     margin-bottom: 12px;
@@ -101,4 +101,24 @@ footer {
     font-size: clamp(12px, 3.5vw, 14px);
     opacity: 1;
     color: var(--text);
+}
+
+/* Responsive progressif – cartes */
+
+@media (min-width: 600px) {
+    main section {
+        width: 75%;
+    }
+}
+
+@media (min-width: 900px) {
+    main section {
+        width: 65%;
+    }
+}
+
+@media (min-width: 1200px) {
+    main section {
+        width: 60%;
+    }
 }

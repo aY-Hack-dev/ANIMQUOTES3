@@ -1,4 +1,5 @@
 let quotesData={}
+
 const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches
 if(prefersDark)document.body.classList.add('dark-mode')
 
@@ -8,27 +9,35 @@ themeToggle.classList.toggle('active',document.body.classList.contains('dark-mod
 themeToggle.addEventListener('click',()=>{
 document.body.classList.toggle('dark-mode')
 themeToggle.classList.toggle('active')
-updateParticlesAnimation()
+if(typeof updateParticlesAnimation==='function')updateParticlesAnimation()
 })
 }
 
 const menuBtn=document.getElementById('menu-btn')
 const menuModal=document.getElementById('menu-modal')
-const closeMenu=document.getElementById('close-menu')
+const menuClose=document.getElementById('menu-close')
 const overlay=document.getElementById('overlay')
 
-if(menuBtn)menuBtn.addEventListener('click',()=>{
+if(menuBtn&&menuModal&&overlay){
+menuBtn.addEventListener('click',()=>{
 menuModal.classList.add('visible')
 overlay.classList.add('visible')
 })
-if(closeMenu)closeMenu.addEventListener('click',()=>{
+}
+
+if(menuClose&&menuModal&&overlay){
+menuClose.addEventListener('click',()=>{
 menuModal.classList.remove('visible')
 overlay.classList.remove('visible')
 })
-if(overlay)overlay.addEventListener('click',()=>{
+}
+
+if(overlay&&menuModal){
+overlay.addEventListener('click',()=>{
 menuModal.classList.remove('visible')
 overlay.classList.remove('visible')
 })
+}
 
 fetch('quotes.json').then(r=>r.json()).then(d=>{
 quotesData=d
@@ -41,10 +50,12 @@ if(cardsContainer){
 let list=Object.keys(quotesData).sort((a,b)=>a.localeCompare(b,'fr',{sensitivity:'base'}))
 displayCards(list)
 const searchInput=document.getElementById('search')
+if(searchInput){
 searchInput.addEventListener('input',()=>{
 const t=searchInput.value.toLowerCase()
 displayCards(list.filter(n=>n.toLowerCase().includes(t)))
 })
+}
 }
 
 const quoteSection=document.getElementById('quote-section')
@@ -69,6 +80,7 @@ document.getElementById('next').onclick=()=>{
 currentIndex=(currentIndex+1)%quotes.length
 showQuote(currentIndex)
 }
+
 document.getElementById('prev').onclick=()=>{
 currentIndex=(currentIndex-1+quotes.length)%quotes.length
 showQuote(currentIndex)

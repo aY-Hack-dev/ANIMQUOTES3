@@ -39,7 +39,7 @@ header {
 .logo {
     width: clamp(34px, 8vw, 40px);
     height: clamp(34px, 8vw, 40px);
-    border-radius: 14px; /* logo arrondi */
+    border-radius: 14px;
     object-fit: cover;
 }
 

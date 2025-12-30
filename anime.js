@@ -75,8 +75,8 @@ function initQuotesPage(){
 
     document.querySelector('.download-btn').addEventListener('click', async () => {
 
-    await document.fonts.load("700 30px Montserrat");
-    await document.fonts.load("500 40px Poppins");
+    await document.fonts.load("700 28px Montserrat");
+    await document.fonts.load("500 38px Poppins");
 
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -84,12 +84,12 @@ function initQuotesPage(){
     const isDark = document.body.classList.contains('dark');
 
     const width = 1080;
-    const paddingTop = 70;
-    const paddingBottom = 70;
+    const paddingTop = 60;
+    const paddingBottom = 60;
 
-    ctx.font = "500 40px Poppins";
+    ctx.font = "500 38px Poppins";
     const maxWidth = 820;
-    const lineHeight = 52;
+    const lineHeight = 50;
 
     const quoteText = quotes[currentIndex].text;
     const lines = getWrappedLines(ctx, quoteText, maxWidth);
@@ -97,17 +97,26 @@ function initQuotesPage(){
 
     const height =
         paddingTop +
-        40 +
-        25 +
+        30 +
+        18 +
         quoteHeight +
-        25 +
+        18 +
         70 +
         paddingBottom;
 
     canvas.width = width;
     canvas.height = height;
 
-    ctx.fillStyle = isDark ? "#0f0f0f" : "#ffffff";
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    if (isDark) {
+        gradient.addColorStop(0, "#121212");
+        gradient.addColorStop(1, "#0b0b0b");
+    } else {
+        gradient.addColorStop(0, "#ffffff");
+        gradient.addColorStop(1, "#f3f4f6");
+    }
+
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.textAlign = "center";
@@ -115,15 +124,15 @@ function initQuotesPage(){
     let y = paddingTop;
 
     ctx.fillStyle = isDark ? "#f4f4f4" : "#111";
-    ctx.font = "700 30px Montserrat";
+    ctx.font = "700 28px Montserrat";
     ctx.fillText("ANIMQUOTES", width / 2, y);
 
-    y += 18;
+    y += 14;
     ctx.fillStyle = "#4b6cb7";
-    ctx.fillRect(width / 2 - 60, y, 120, 3);
+    ctx.fillRect(width / 2 - 55, y, 110, 3);
 
-    y += 45;
-    ctx.font = "500 40px Poppins";
+    y += 32;
+    ctx.font = "500 38px Poppins";
     ctx.fillStyle = isDark ? "#f4f4f4" : "#111";
 
     lines.forEach(line => {
@@ -131,18 +140,18 @@ function initQuotesPage(){
         y += lineHeight;
     });
 
-    y += 20;
-    ctx.fillStyle = isDark ? "#444" : "#d1d5db";
-    ctx.fillRect(width / 2 - 45, y, 90, 2);
+    y += 12;
+    ctx.fillStyle = isDark ? "#3f3f46" : "#d1d5db";
+    ctx.fillRect(width / 2 - 40, y, 80, 2);
 
-    y += 40;
+    y += 34;
     ctx.font = "600 20px Poppins";
-    ctx.fillStyle = isDark ? "#cccccc" : "#333";
+    ctx.fillStyle = isDark ? "#d4d4d8" : "#333";
     ctx.fillText(quotes[currentIndex].author || "", width / 2, y);
 
-    y += 26;
-    ctx.font = "500 16px Poppins";
-    ctx.fillStyle = isDark ? "#9ca3af" : "#666";
+    y += 24;
+    ctx.font = "500 15px Poppins";
+    ctx.fillStyle = isDark ? "#a1a1aa" : "#666";
     ctx.fillText(animeName.toUpperCase(), width / 2, y);
 
     const link = document.createElement('a');

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ANIMQUOTES</title>
 <link rel="stylesheet" href="home.css">
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3YEHLJCTM"></script>
 <script>
 window.dataLayer=window.dataLayer||[]
@@ -12,16 +13,20 @@ function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date())
 gtag('config','G-E3YEHLJCTM')
 </script>
+
 <script defer src="https://cloud.umami.is/script.js" data-website-id="890fc4b6-1bff-4466-b712-6a301510c841"></script>
 </head>
+
 <body>
 
 <div class="background-particles"></div>
 
 <div id="menu-modal">
-<button id="close-menu">✕</button>
+<div class="menu-header">
 <h3>Menu</h3>
-<ul>
+<button id="menu-close">✕</button>
+</div>
+<ul class="menu-links">
 <li><a href="apropos.html">À propos</a></li>
 <li><a href="faq.html">FAQ</a></li>
 <li><a href="top.html">Top Animés</a></li>
@@ -36,10 +41,13 @@ gtag('config','G-E3YEHLJCTM')
 <img src="logo.png" alt="Animequotes Logo" class="logo">
 <h1>ANIMQUOTES</h1>
 </div>
+
 <div class="header-controls">
 <button id="menu-btn">☰</button>
 <input type="text" id="search" placeholder="Rechercher un animé...">
-<button id="theme-toggle"><span class="toggle-ball"></span></button>
+<button id="theme-toggle">
+<span class="toggle-ball"></span>
+</button>
 </div>
 </header>
 

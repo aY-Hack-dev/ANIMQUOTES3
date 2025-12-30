@@ -126,21 +126,26 @@ width:90%;
 max-width:300px;
 background:var(--card-bg);
 backdrop-filter:blur(12px);
-padding:18px;
+padding:18px 12px;
 border-radius:12px;
 display:none;
 z-index:1000;
+text-align:center;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:12px;
 }
 
 #menu-modal.visible{
-display:block;
+display:flex;
 }
 
-/* Bouton de fermeture */
 #menu-close{
 position:absolute;
-top:10px;
-right:10px;
+top:12px;
+right:12px;
 width:28px;
 height:28px;
 display:flex;
@@ -160,15 +165,14 @@ z-index:1010;
 background:rgba(255,255,255,0.2);
 }
 
-/* Menu items */
 #menu-modal ul{
 list-style:none;
 margin:0;
 padding:0;
-}
-
-#menu-modal ul li{
-margin:10px 0;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:10px;
 }
 
 #menu-modal ul li a{
@@ -182,7 +186,6 @@ display:block;
 opacity:.7;
 }
 
-/* Overlay pour fermeture au clic */
 #overlay{
 position:fixed;
 top:0;
@@ -198,16 +201,19 @@ z-index:900;
 display:block;
 }
 
-/* Mobile: menu toujours centré sous bouton */
 @media(max-width:767px){
 #menu-modal{
-left:16px; /* ajustable si tu veux vraiment à gauche */
+left:16px;
 transform:none;
-top:70px; /* sous header mobile */
+top:70px;
 width:200px;
+align-items:flex-start; /* pour que les items restent centrés par rapport au popover */
+padding:18px 12px;
+}
+#menu-modal ul{
+align-items:center;
 }
 }
-
 #overlay{
 position:fixed;
 top:0;
